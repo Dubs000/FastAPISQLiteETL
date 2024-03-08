@@ -1,0 +1,23 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+pandas = "*"
+pytest = "*"
+uvicorn = "*"
+fastapi = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"
+python_full_version = "3.8.2"
+
+[scripts]
+initialize_db = "python -c 'from app.database.database import create_tables; create_tables()'"  # run as: pipenv run initialize_db
+load_data = "python -m app.data_loader.load_data --file "  # run as: pipenv run load_data data/reviews.csv
+start_server = "uvicorn app.routes.main:app --reload"  # run as: pipenv run start_server
+start_app = "python -m app.main"  # initializes db, loads data and starts webserver
+                                  # run as: pipenv run start_app
