@@ -12,6 +12,7 @@ class Condition(BaseModel):
     contains: Optional[str] = None
     range: Optional[List[str]] = None
 
+
 class QueryInput(BaseModel):
     table: str
     columns: Optional[List[str]] = None

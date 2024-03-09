@@ -14,6 +14,16 @@ def get_all_reviews():
     return reviews
 
 
+def run_select_query(query_input: QueryInput):
+    conn = create_connection()
+    cursor = conn.cursor()
+    select_query, params = build_select_query(query_input)
+    cursor.execute(select_query, params)
+    reviews = cursor.fetchall()
+    conn.close()
+    return reviews
+
+
 def search_reviews_containing():
     # Search review based on a text field
     pass

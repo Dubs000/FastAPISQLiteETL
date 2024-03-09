@@ -73,4 +73,5 @@ if __name__ == "__main__":
         Condition(column="reviewer_name", contains="John")
     ]
     where_clause_, params_ = build_where_clause(conditions_)
-    breakpoint()
+    query_input = QueryInput(table="reviews", columns=["review_date", "reviewer_name"], conditions=conditions_)
+    q, p = build_select_query(query_input)

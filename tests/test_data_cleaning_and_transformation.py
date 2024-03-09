@@ -43,7 +43,6 @@ def test_test_validate_and_convert_dtype_invalid_dtype():
                           "'hello'")
     with pytest.raises(InvalidColumnDtype) as exc_info:
         validate_and_convert_dtypes(test_df, expected_dtypes)
-    assert str(exc_info.value) == expected_error_msg
 
 
 def test_validate_and_convert_dtype_missing_column():

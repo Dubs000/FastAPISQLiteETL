@@ -1,13 +1,36 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException, Body
 from starlette.concurrency import run_in_threadpool  # Allows synchronous code to run async by using threads
 
-from app.crud.read import get_all_reviews
+from app.crud.read import get_all_reviews, run_select_query
 from app.crud.delete import delete_all_reviews
 from app.routes.routes_logger import api_logger
-from app.models.models import QueryInput, Condition
+from app.models.models import QueryInput
 
 
 app = FastAPI()
+
+
+# Example query
+"""
+curl -X GET http://127.0.0.1:8000/reviews/select \
+     -H "Content-Type: application/json" \
+     -d '{
+           "table": "reviews",
+           "columns": ["review_date", "reviewer_name"],
+           "conditions": [
+               {"column": "reviewer_name", "contains": "John"}
+           ]
+         }'
+"""
+
+# curl -X GET http://127.0.0.1:8000/reviews/select
+@app.get("/reviews/select")
+async def run_query(query_input: QueryInput = Body(...)):
+    try:
+        results = run_select_query(query_input)
+        return results
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
 
 
 # curl -X DELETE http://127.0.0.1:8000/reviews/delete
