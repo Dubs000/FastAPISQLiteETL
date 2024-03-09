@@ -1,2 +1,3 @@
 tests/.pytest_cache
 app/database/trustpilot_reviews.db
+.idea
