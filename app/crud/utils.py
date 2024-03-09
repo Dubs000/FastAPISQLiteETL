@@ -1,4 +1,6 @@
 from app.database.database_logger import database_logger
+from typing import List, Optional
+from app.models.models import Condition
 
 """
 Parameterised queries are used here via the `?` syntax where the query is built and values supplied at
@@ -7,7 +9,7 @@ Used to prevent SQL injections
 """
 
 
-def build_where_clause(conditions):
+def build_where_clause(conditions=List[Condition]):
     """
     Build where clause based on a set of conditions, this API only allows for operators
     `range`, `contains` and `equals` however is easily extensible to include other operators
@@ -18,15 +20,15 @@ def build_where_clause(conditions):
     params = []
 
     for condition in conditions:
-        if "range" in condition:
-            where_clauses.append(f"{condition['column']} BETWEEN ? AND ?")
-            params.extend(condition["range"])
-        elif "contains" in condition:
-            where_clauses.append(f"{condition['column']} LIKE ?")
-            params.append(f"%{condition['contains']}%")
-        elif "equals" in condition:
-            where_clauses.append(f"{condition['column']} = ?")
-            params.append(condition["equals"])
+        if condition.range:
+            where_clauses.append(f"{condition.column} BETWEEN ? AND ?")
+            params.extend(condition.range)
+        elif condition.contains:
+            where_clauses.append(f"{condition.column} LIKE ?")
+            params.append(f"%{condition.contains}%")
+        elif condition.equals:
+            where_clauses.append(f"{condition.column} = ?")
+            params.append(condition.equals)
         # Add more condition types as needed
 
     where_clause = " AND ".join(where_clauses) if where_clauses else ""
@@ -53,3 +55,12 @@ def build_update_query(table, update_fields, conditions):
 
     params = list(update_fields.values()) + where_params
     return query, params
+
+
+
+if __name__ == "__main__":
+    conditions = [
+        Condition(column="review_date", range=["2021-01-01", "2021-01-31"]),
+        Condition(column="reviewer_name", contains="John")
+    ]
+    build_where_clause(conditions)
