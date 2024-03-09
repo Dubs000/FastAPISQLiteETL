@@ -1,11 +1,11 @@
-from app.database.database import create_tables
+from app.database.database import create_table
 from app.data_loader.load_data import load_data
 import uvicorn
 
 
 def initialize_and_load_data(csv_file_path=None):
     # Initialize the database
-    create_tables()
+    create_table()
 
     # Optionally, load data
     if csv_file_path:

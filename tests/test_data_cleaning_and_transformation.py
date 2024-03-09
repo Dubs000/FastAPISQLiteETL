@@ -78,7 +78,7 @@ def test_validate_and_convert_dtype():
     # Set up
     expected_dtypes = {"integer_column": "int64",
                        "integer_column_strings": "object",
-                       "datetime_column": 'datetime64[ns]',
+                       "datetime_column": 'dt.date',
                        "object_column": 'object'}
     datetime_strings = ["2024-02-23", "2024-02-24", "2024-02-22", "2024-02-21"]
     test_df = pd.DataFrame(data={
@@ -89,13 +89,13 @@ def test_validate_and_convert_dtype():
     expected_df = pd.DataFrame(data={
         "integer_column": [1, 2, 3, 4],
         "integer_column_strings": ['1', '2', '3', '4'],
-        "datetime_column": [dt.datetime.now() for i in range(4)],
+        "datetime_column": [dt.datetime.now() for _ in range(4)],
         "object_column": ["hello", "world", "string", "type"]
     })
     actual_df = validate_and_convert_dtypes(test_df, expected_dtypes)
     assert actual_df['integer_column'].dtype == expected_df['integer_column'].dtype
     assert actual_df['integer_column_strings'].dtype == expected_df['integer_column_strings'].dtype
-    assert actual_df['datetime_column'].dtype == expected_df['datetime_column'].dtype
+    assert actual_df['datetime_column'].dtype == "object"
     assert actual_df['object_column'].dtype == expected_df['object_column'].dtype
 
 

@@ -1,6 +1,9 @@
 import pandas as pd
 from typing import Union
 import re
+import country_converter as coco
+
+cc = coco.CountryConverter()
 
 
 def is_valid_email(email):
@@ -65,8 +68,8 @@ def validate_and_convert_dtypes(df: pd.DataFrame, expected_datatypes: dict) -> U
 
 def convert_column_dtype(column, target_dtype):
     try:
-        if target_dtype == 'datetime64[ns]':
-            return pd.to_datetime(column, errors='coerce')
+        if target_dtype == 'dt.date':
+            return pd.to_datetime(column, errors='coerce').dt.date
         elif target_dtype == 'object':
             # Strip whitespace from text based fields
             return column.str.strip().str.replace('\s+', ' ', regex=True).astype(str)
@@ -80,13 +83,20 @@ def convert_column_dtype(column, target_dtype):
 def validate_input_datastructure_and_types(df: pd.DataFrame):
     expected_datatypes = {
         'reviewer_name': 'object', 'review_title': 'object', 'review_rating': 'int64', 'review_content': 'object',
-        'email_address': 'object', 'country': 'object', 'review_date': 'datetime64[ns]'
+        'email_address': 'object', 'country': 'object', 'review_date': 'dt.date'
     }
     corrected_table_name_df = convert_col_names(df)
     return validate_and_convert_dtypes(corrected_table_name_df, expected_datatypes)
 
 
 def clean_and_transform_data(df: pd.DataFrame) -> pd.DataFrame:
+
+    # Convert country names to short names if not found then view as "Not Found"
+    country_names = cc.pandas_convert(series=df["country"], to='name_short', not_found="Not Found")
+    # Convert country names to ISO3 code if not found then view as "Not Found"
+    country_codes = cc.pandas_convert(series=df["country"], to='ISO3', not_found="Not Found")
+    df["country"] = country_names
+    df["country_code"] = country_codes
 
     # Standardise and capitalise reviewer_name field
     df['reviewer_name'] = df['reviewer_name'].str.strip().str.title()
