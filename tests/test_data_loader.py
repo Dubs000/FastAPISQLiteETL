@@ -1,9 +1,7 @@
 import pytest
 import sqlite3
-import pandas as pd
 from app.data_loader.data_cleaning_and_transformation import prepare_data_for_loading
 from app.database.database import CREATE_TABLE_SQL, base_dir
-import os
 
 
 @pytest.fixture
