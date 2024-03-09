@@ -1,6 +1,6 @@
 from app.database.database_logger import database_logger
-from typing import List, Optional
-from app.models.models import Condition
+from typing import Iterable, List
+from app.models.models import Condition, QueryInput
 
 """
 Parameterised queries are used here via the `?` syntax where the query is built and values supplied at
@@ -29,20 +29,30 @@ def build_where_clause(conditions=List[Condition]):
         elif condition.equals:
             where_clauses.append(f"{condition.column} = ?")
             params.append(condition.equals)
-        # Add more condition types as needed
+        # Add more condition types as needed to the `Condition` model
 
     where_clause = " AND ".join(where_clauses) if where_clauses else ""
     database_logger.info(f"Generated where clause = `{where_clause}`, Params = `{params}`")
     return where_clause, params
 
 
-def build_select_query(table, columns=None, where_clause="", params=None):
-    base_query = f"SELECT {', '.join(columns) if columns else '*'} FROM {table}"
+def build_select_query_(query_input=QueryInput, where_clause="", params=None):
+    base_query = f"SELECT {', '.join(query_input.columns) if query_input.columns else '*'} FROM {query_input.table}"
 
     if where_clause:
         base_query += " WHERE " + where_clause
     database_logger.info(f"Generated select clause = `{base_query}`, Params = `{params}`")
     return base_query, params if params else []
+
+
+def build_select_query(query_input: QueryInput):
+    where_clause_generated, params_generated = build_where_clause(query_input.conditions)
+    base_query, params = build_select_query_(
+        query_input,
+        where_clause_generated,
+        params_generated,
+        )
+    return base_query, params
 
 
 def build_update_query(table, update_fields, conditions):
@@ -57,10 +67,10 @@ def build_update_query(table, update_fields, conditions):
     return query, params
 
 
-
 if __name__ == "__main__":
-    conditions = [
+    conditions_ = [
         Condition(column="review_date", range=["2021-01-01", "2021-01-31"]),
         Condition(column="reviewer_name", contains="John")
     ]
-    build_where_clause(conditions)
+    where_clause_, params_ = build_where_clause(conditions_)
+    breakpoint()

@@ -1,5 +1,5 @@
-from pydantic import BaseModel, Field, field_validator
 from typing import List, Optional
+from pydantic import BaseModel
 
 """
 This module defines all models for user inputs via the API
@@ -12,8 +12,8 @@ class Condition(BaseModel):
     contains: Optional[str] = None
     range: Optional[List[str]] = None
 
-    # Add custom validators as needed
-    @field_validator('column')
-    def validate_column_name(cls, v):
-        # validate that column name is allowed
-        return v
+class QueryInput(BaseModel):
+    table: str
+    columns: Optional[List[str]] = None
+    conditions: List[Condition] = []
+

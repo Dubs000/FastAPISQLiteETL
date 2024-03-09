@@ -4,6 +4,8 @@ from starlette.concurrency import run_in_threadpool  # Allows synchronous code t
 from app.crud.read import get_all_reviews
 from app.crud.delete import delete_all_reviews
 from app.routes.routes_logger import api_logger
+from app.models.models import QueryInput, Condition
+
 
 app = FastAPI()
 

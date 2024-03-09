@@ -1,6 +1,6 @@
-from app.crud.utils import build_where_clause, build_select_query, build_update_query
+from app.crud.utils import build_where_clause, build_select_query_, build_update_query
 import pytest
-from app.models.models import Condition
+from app.models.models import Condition, QueryInput
 
 
 @pytest.mark.parametrize(
@@ -31,47 +31,42 @@ def test_build_where_clause(conditions, expected_where_clause, expected_params):
 
 
 @pytest.mark.parametrize(
-    "table, columns, where_clause, params, expected_base_query, expected_params",
+    "query_input, where_clause_generated, params, expected_base_query, expected_params",
     [
         # Test case 1 - select * with where clause
         (
-            "reviews",
-            None,
-            "review_date BETWEEN ? AND ?",
-            ["2021-01-01", "2021-01-31"],
-            "SELECT * FROM reviews WHERE review_date BETWEEN ? AND ?",
-            ["2021-01-01", "2021-01-31"]
+                QueryInput(table="reviews", columns=None),
+                "review_date BETWEEN ? AND ?",
+                ["2021-01-01", "2021-01-31"],
+                "SELECT * FROM reviews WHERE review_date BETWEEN ? AND ?",
+                ["2021-01-01", "2021-01-31"],
         ),
         # Test case 2 - select column names with where clause
         (
-            "reviews",
-            ["review_date", "country"] ,
-            "review_date BETWEEN ? AND ? AND reviewer_name LIKE ?",
-            ["2021-01-01", "2021-01-31", "%John%"],
-            "SELECT review_date, country FROM reviews WHERE review_date BETWEEN ? AND ? AND reviewer_name LIKE ?",
-            ["2021-01-01", "2021-01-31", "%John%"]
+                QueryInput(table="reviews", columns=["review_date", "country"]),
+                "review_date BETWEEN ? AND ? AND reviewer_name LIKE ?",
+                ["2021-01-01", "2021-01-31", "%John%"],
+                "SELECT review_date, country FROM reviews WHERE review_date BETWEEN ? AND ? AND reviewer_name LIKE ?",
+                ["2021-01-01", "2021-01-31", "%John%"]
         ),
         # Test case 3 - select * with no where clause
         (
-            "reviews",
-            [],
-            "",
-            [],
-            "SELECT * FROM reviews",
-            []
+                QueryInput(table="reviews", columns=[]),
+                "",
+                [],
+                "SELECT * FROM reviews",
+                []
         )
     ]
 )
-def test_build_entire_select_query(table,
-                                   columns,
-                                   where_clause,
+def test_build_entire_select_query(query_input,
+                                   where_clause_generated,
                                    params,
                                    expected_base_query,
                                    expected_params):
-    actual_base_query, actual_params = build_select_query(
-        table,
-        columns,
-        where_clause,
+    actual_base_query, actual_params = build_select_query_(
+        query_input,
+        where_clause_generated,
         params
     )
     assert actual_base_query == expected_base_query
