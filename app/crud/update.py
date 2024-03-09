@@ -1,5 +1,7 @@
 import sqlite3
-from ..database.database import create_connection
+from app.database.database import create_connection
+from app.database.database_logger import database_logger
+
 
 """
 Edit a Review: 

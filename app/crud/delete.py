@@ -1,5 +1,7 @@
 import sqlite3
 from app.database.database import create_connection
+from app.database.database_logger import database_logger
+
 """
 Delete a Review: 
 Remove a specific review from the database, typically identified by a unique ID.
@@ -16,6 +18,8 @@ such as all reviews before a certain date or all reviews with a rating below a c
 def delete_all_reviews():
     conn = create_connection()
     cursor = conn.cursor()
-    cursor.execute("DELETE FROM reviews where 1 = 1;")
+    delete_all_statement = "DELETE FROM reviews where 1 = 1;"
+    database_logger.info(f"Executing delete all statement: {delete_all_statement}")
+    cursor.execute(delete_all_statement)
     conn.commit()
     conn.close()

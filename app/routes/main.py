@@ -3,6 +3,7 @@ from starlette.concurrency import run_in_threadpool  # Allows synchronous code t
 
 from app.crud.read import get_all_reviews
 from app.crud.delete import delete_all_reviews
+from app.routes.routes_logger import api_logger
 
 app = FastAPI()
 
@@ -10,6 +11,7 @@ app = FastAPI()
 # curl -X DELETE http://127.0.0.1:8000/reviews/delete
 @app.delete("/reviews/delete")
 async def remove_items():
+    api_logger.info(f"/reviews/delete triggered")
     result = await run_in_threadpool(delete_all_reviews)
     return result
 
@@ -17,7 +19,9 @@ async def remove_items():
 # curl -X GET http://127.0.0.1:8000/reviews/read
 @app.get("/reviews/read")
 async def read_items():
+    api_logger.info(f"/reviews/read triggered")
     result = await run_in_threadpool(get_all_reviews)
+    api_logger.info(f"Result: {result}")
     return result
 
 

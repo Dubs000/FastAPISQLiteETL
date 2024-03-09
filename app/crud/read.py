@@ -1,4 +1,5 @@
 from app.database.database import create_connection
+from app.database.database_logger import database_logger
 
 
 def get_all_reviews():
@@ -7,6 +8,7 @@ def get_all_reviews():
     cursor.execute("SELECT * FROM reviews;")
     reviews = cursor.fetchall()
     conn.close()
+    breakpoint()
     return reviews
 
 

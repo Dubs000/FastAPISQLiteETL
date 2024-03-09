@@ -8,16 +8,6 @@ from app.data_loader.data_loader_logger import data_loader_logger
 cc = coco.CountryConverter()
 
 
-def is_valid_email(email):
-    if email:  # Check if email is not None or empty
-        return bool(re.match(r"[^@]+@[^@]+\.[^@]+", email))
-    return False
-
-
-def is_valid_rating(rating):
-    return rating >= 0
-
-
 class MissingColumns(Exception):
     pass
 
@@ -74,7 +64,6 @@ def validate_and_convert_dtypes(df: pd.DataFrame, expected_datatypes: dict) -> U
 def convert_column_dtype(column, target_dtype):
     try:
         if target_dtype == 'dt.date':
-            data_loader_logger.info(f"Converting ")
             return pd.to_datetime(column, errors='coerce').dt.date
         elif target_dtype == 'object':
             # Strip whitespace from text based fields
@@ -97,30 +86,40 @@ def validate_input_datastructure_and_types(df: pd.DataFrame):
     return validate_and_convert_dtypes(corrected_table_name_df, expected_datatypes)
 
 
-def clean_and_transform_data(df: pd.DataFrame) -> pd.DataFrame:
+def is_valid_email(email):
+    if email:  # Check if email is not None or empty
+        return bool(re.match(r"[^@]+@[^@]+\.[^@]+", email))
+    return False
 
+
+def is_valid_rating(rating):
+    return rating >= 0
+
+
+def convert_country_names(df: pd.DataFrame) -> pd.DataFrame:
+    new_df = df.copy()
     # Convert country names to short names if not found then view as "Not Found"
     data_loader_logger.info(f"Converting values in 'country' column to standardised country names")
-    country_names = cc.pandas_convert(series=df["country"], to='name_short', not_found="Not Found")
+    country_names = cc.pandas_convert(series=new_df["country"], to='name_short', not_found="Not Found")
     # Convert country names to ISO3 code if not found then view as "Not Found"
     data_loader_logger.info(f"Converting values in 'country' column to standardised ISO3 country names")
-    country_codes = cc.pandas_convert(series=df["country"], to='ISO3', not_found="Not Found")
-    df["country"] = country_names
-    df["country_code"] = country_codes
+    country_codes = cc.pandas_convert(series=new_df["country"], to='ISO3', not_found="Not Found")
+    new_df["country"] = country_names
+    new_df["country_code"] = country_codes
+    return new_df
 
-    # Standardise and capitalise reviewer_name field
-    data_loader_logger.info(f"Stripping whitespace and titling reviewer name")
-    df['reviewer_name'] = df['reviewer_name'].str.strip().str.title()
 
+def validate_emails_and_ratings(df: pd.DataFrame) -> pd.DataFrame:
+    new_df = df.copy()
     # Add columns email_valid and rating_valid that are boolean
     data_loader_logger.info(f"Validating email addresses via regex [^@]+@[^@]+\.[^@]+")
-    df['email_valid'] = df['email_address'].apply(is_valid_email)
+    new_df['email_valid'] = new_df['email_address'].apply(is_valid_email)
     data_loader_logger.info("Ensuring review ratings are > 0")
-    df['rating_valid'] = df['review_rating'].apply(is_valid_rating)
+    new_df['rating_valid'] = new_df['review_rating'].apply(is_valid_rating)
 
     # Get rows with invalid emails/ratings
-    df_invalid_emails = df[~df['email_valid']][["reviewer_name","email_address"]]
-    df_invalid_ratings = df[~df['rating_valid']][["reviewer_name","review_rating"]]
+    df_invalid_emails = new_df[~new_df['email_valid']][["reviewer_name", "email_address"]]
+    df_invalid_ratings = new_df[~new_df['rating_valid']][["reviewer_name", "review_rating"]]
     if not df_invalid_emails.empty:
         data_loader_logger.warn(f"Dataframe contains invalid emails: \n{df_invalid_emails}\n, these emails will be "
                                 f"removed")
@@ -129,11 +128,22 @@ def clean_and_transform_data(df: pd.DataFrame) -> pd.DataFrame:
                                 f"removed")
 
     # Remove invalid ratings and emails by filtering where email_valid AND rating_valid are both True
-    df = df[df['email_valid'] & df['rating_valid']]
-    df.drop(columns=['email_valid', 'rating_valid'], inplace=True)  # Remove these boolean columns
+    new_df = new_df[new_df['email_valid'] & new_df['rating_valid']]
+    new_df.drop(columns=['email_valid', 'rating_valid'], inplace=True)  # Remove these boolean columns
+    return new_df
 
+
+def clean_and_transform_data(df: pd.DataFrame) -> pd.DataFrame:
+
+    country_transformed_df = convert_country_names(df)
+
+    # Standardise and capitalise reviewer_name field
+    data_loader_logger.info(f"Stripping whitespace and titling reviewer name")
+    country_transformed_df['reviewer_name'] = country_transformed_df['reviewer_name'].str.strip().str.title()
+
+    email_transformed_df = validate_emails_and_ratings(country_transformed_df)
     # Need further context on the data and use cases to determine whether to drop rows with NaN values for other fields
-    return df
+    return email_transformed_df
 
 
 def prepare_data_for_loading(csv_file_name: str) -> pd.DataFrame:
