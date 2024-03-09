@@ -1,3 +1,5 @@
+from app.database.database_logger import database_logger
+
 """
 Parameterised queries are used here via the `?` syntax where the query is built and values supplied at
 the time of execution of the query
@@ -28,6 +30,7 @@ def build_where_clause(conditions):
         # Add more condition types as needed
 
     where_clause = " AND ".join(where_clauses) if where_clauses else ""
+    database_logger.info(f"Generated where clause = `{where_clause}`, Params = `{params}`")
     return where_clause, params
 
 
@@ -36,7 +39,7 @@ def build_select_query(table, columns=None, where_clause="", params=None):
 
     if where_clause:
         base_query += " WHERE " + where_clause
-
+    database_logger.info(f"Generated select clause = `{base_query}`, Params = `{params}`")
     return base_query, params if params else []
 
 
