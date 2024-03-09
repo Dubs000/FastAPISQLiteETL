@@ -8,7 +8,6 @@ def get_all_reviews():
     cursor.execute("SELECT * FROM reviews;")
     reviews = cursor.fetchall()
     conn.close()
-    breakpoint()
     return reviews
 
 
