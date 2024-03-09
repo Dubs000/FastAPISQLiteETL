@@ -3,6 +3,8 @@ from typing import Union
 import re
 import country_converter as coco
 
+from app.data_loader.data_loader_logger import data_loader_logger
+
 cc = coco.CountryConverter()
 
 
@@ -25,6 +27,7 @@ class InvalidColumnDtype(Exception):
 
 
 def read_csv(filename: str) -> pd.DataFrame:
+    data_loader_logger.info(msg=f"Reading csv file into dataframe {filename}")
     return pd.read_csv(filename)
 
 
@@ -37,6 +40,7 @@ def convert_col_names(df: pd.DataFrame) -> pd.DataFrame:
     new_df = df.copy()  # Work on a copy of the DataFrame
     new_col_names = [col.strip().lower().replace(" ", "_") for col in new_df.columns]
     new_df.columns = new_col_names
+    data_loader_logger.info(f"Convering column names into standard snakecase format from {df.columns} to {new_col_names}")
     return new_df
 
 
@@ -53,22 +57,24 @@ def validate_and_convert_dtypes(df: pd.DataFrame, expected_datatypes: dict) -> U
         if column in new_df.columns:
             actual_dtype = new_df[column].dtype
             if actual_dtype != expected_dtype:
-                print(f"Converting {column} from {actual_dtype} to {expected_dtype}")
+                data_loader_logger.info(f"Converting {column} from {actual_dtype} to {expected_dtype}")
                 # Exception potentially raised here
                 new_df[column] = convert_column_dtype(new_df[column], expected_dtype)
         else:
             missing_columns.append(column)
-            print(f"Warning: Expected column '{column}' not found in DataFrame")
+            data_loader_logger.warn(f"Expected column '{column}' not found in DataFrame")
 
     if missing_columns:
-        raise MissingColumns(
-            f"Missing columns in input data, please investigate, missing columns = {missing_columns}")
+        error_msg = f"Missing columns in input data, please investigate, missing columns = {missing_columns}"
+        data_loader_logger.error(error_msg)
+        raise MissingColumns(error_msg)
     return new_df
 
 
 def convert_column_dtype(column, target_dtype):
     try:
         if target_dtype == 'dt.date':
+            data_loader_logger.info(f"Converting ")
             return pd.to_datetime(column, errors='coerce').dt.date
         elif target_dtype == 'object':
             # Strip whitespace from text based fields
@@ -76,8 +82,9 @@ def convert_column_dtype(column, target_dtype):
         else:
             return column.astype(target_dtype)
     except Exception as e:
-        print(f"Error converting column: {e}")
-        raise InvalidColumnDtype(f"Error converting column {column}: {e}")  # Return original column in case of error
+        error_msg = f"Error converting column: {e}"
+        data_loader_logger.error(error_msg)
+        raise InvalidColumnDtype(error_msg)  # Return original column in case of error
 
 
 def validate_input_datastructure_and_types(df: pd.DataFrame):
@@ -86,30 +93,40 @@ def validate_input_datastructure_and_types(df: pd.DataFrame):
         'email_address': 'object', 'country': 'object', 'review_date': 'dt.date'
     }
     corrected_table_name_df = convert_col_names(df)
+    data_loader_logger.info(f"Mapping of expected datatype: {expected_datatypes}")
     return validate_and_convert_dtypes(corrected_table_name_df, expected_datatypes)
 
 
 def clean_and_transform_data(df: pd.DataFrame) -> pd.DataFrame:
 
     # Convert country names to short names if not found then view as "Not Found"
+    data_loader_logger.info(f"Converting values in 'country' column to standardised country names")
     country_names = cc.pandas_convert(series=df["country"], to='name_short', not_found="Not Found")
     # Convert country names to ISO3 code if not found then view as "Not Found"
+    data_loader_logger.info(f"Converting values in 'country' column to standardised ISO3 country names")
     country_codes = cc.pandas_convert(series=df["country"], to='ISO3', not_found="Not Found")
     df["country"] = country_names
     df["country_code"] = country_codes
 
     # Standardise and capitalise reviewer_name field
+    data_loader_logger.info(f"Stripping whitespace and titling reviewer name")
     df['reviewer_name'] = df['reviewer_name'].str.strip().str.title()
 
     # Add columns email_valid and rating_valid that are boolean
+    data_loader_logger.info(f"Validating email addresses via regex [^@]+@[^@]+\.[^@]+")
     df['email_valid'] = df['email_address'].apply(is_valid_email)
+    data_loader_logger.info("Ensuring review ratings are > 0")
     df['rating_valid'] = df['review_rating'].apply(is_valid_rating)
 
     # Get rows with invalid emails/ratings
-    df_invalid_emails = df[~df['email_valid']]
-    df_invalid_ratings = df[~df['rating_valid']]
-    print(f"Dataframe contains invalid emails: {df_invalid_emails}")
-    print(f"Dataframe contains invalid ratings: {df_invalid_ratings}")
+    df_invalid_emails = df[~df['email_valid']][["reviewer_name","email_address"]]
+    df_invalid_ratings = df[~df['rating_valid']][["reviewer_name","review_rating"]]
+    if not df_invalid_emails.empty:
+        data_loader_logger.warn(f"Dataframe contains invalid emails: \n{df_invalid_emails}\n, these emails will be "
+                                f"removed")
+    if not df_invalid_ratings.empty:
+        data_loader_logger.warn(f"Dataframe contains invalid ratings: \n{df_invalid_ratings}\n, these ratings will be "
+                                f"removed")
 
     # Remove invalid ratings and emails by filtering where email_valid AND rating_valid are both True
     df = df[df['email_valid'] & df['rating_valid']]
