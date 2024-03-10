@@ -20,14 +20,16 @@ curl -X GET http://127.0.0.1:8000/reviews/select \
            "conditions": [
                {"column": "reviewer_name", "contains": "John"}
            ]
+           "limit": "4"
          }'
 """
+
 
 # curl -X GET http://127.0.0.1:8000/reviews/select
 @app.get("/reviews/select")
 async def run_query(query_input: QueryInput = Body(...)):
     try:
-        results = run_select_query(query_input)
+        results = await run_in_threadpool(run_select_query, query_input)
         return results
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))

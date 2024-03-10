@@ -41,6 +41,9 @@ def build_select_query_(query_input=QueryInput, where_clause="", params=None):
 
     if where_clause:
         base_query += " WHERE " + where_clause
+    if query_input.limit:
+        base_query += " LIMIT ?"
+        params.append(query_input.limit)
     database_logger.info(f"Generated select clause = `{base_query}`, Params = `{params}`")
     return base_query, params if params else []
 
@@ -73,5 +76,5 @@ if __name__ == "__main__":
         Condition(column="reviewer_name", contains="John")
     ]
     where_clause_, params_ = build_where_clause(conditions_)
-    query_input = QueryInput(table="reviews", columns=["review_date", "reviewer_name"], conditions=conditions_)
+    query_input = QueryInput(table="reviews", columns=["review_date", "reviewer_name"], conditions=conditions_, limit=5)
     q, p = build_select_query(query_input)

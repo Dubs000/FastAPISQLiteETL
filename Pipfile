@@ -9,6 +9,7 @@ pytest = "*"
 uvicorn = "*"
 fastapi = "*"
 country-converter = "*"
+email-validator = "*"
 
 [dev-packages]
 
