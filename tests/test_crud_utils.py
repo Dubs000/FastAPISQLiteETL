@@ -1,4 +1,4 @@
-from app.crud.utils import build_where_clause, build_select_query_, build_update_query
+from app.crud.utils import build_where_clause, build_select_query_
 import pytest
 from app.models.models import Condition, QueryInput
 

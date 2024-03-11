@@ -1,11 +1,13 @@
 from app.database.database_logger import database_logger
-from typing import Iterable, List
+from typing import List
 from app.models.models import Condition, QueryInput, Review
 
 """
 Parameterised queries are used here via the `?` syntax where the query is built and values supplied at
 the time of execution of the query
 Used to prevent SQL injections
+
+Future functionality would include an `OR` operator as it is currently only able to do AND conditions
 """
 
 

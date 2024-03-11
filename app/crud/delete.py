@@ -1,25 +1,34 @@
-import sqlite3
+from sqlite3 import Error as SQLiteError
+
 from app.database.database import create_connection
 from app.database.database_logger import database_logger
+from app.models.models import Condition
+from app.crud.utils import build_where_clause
 
-"""
-Delete a Review: 
-Remove a specific review from the database, typically identified by a unique ID.
-
-Delete Reviews by User: 
-Remove all reviews submitted by a specific user.
-
-Bulk Delete: 
-A more advanced operation that allows deletion of reviews based on certain filters, 
-such as all reviews before a certain date or all reviews with a rating below a certain threshold.
-"""
+from typing import List
 
 
-def delete_all_reviews():
-    conn = create_connection()
-    cursor = conn.cursor()
-    delete_all_statement = "DELETE FROM reviews where 1 = 1;"
-    database_logger.info(f"Executing delete all statement: {delete_all_statement}")
-    cursor.execute(delete_all_statement)
-    conn.commit()
-    conn.close()
+def delete_reviews(conditions: List[Condition]):
+    with create_connection() as conn:
+        try:
+            cursor = conn.cursor()
+            where_clause, params = build_where_clause(conditions)
+            delete_statement = f"DELETE FROM reviews WHERE {where_clause}"
+            database_logger.info(f"Executing delete statement: {delete_statement}")
+
+            cursor.execute(delete_statement, params)
+            rows_deleted = cursor.rowcount  # Number of rows deleted
+            conn.commit()
+
+            database_logger.info(f"Number of rows deleted: {rows_deleted}")
+            return rows_deleted
+        except SQLiteError as error:
+            database_logger.error(f"Failed to delete data: {error}")
+            return None
+
+
+if __name__ == "__main__":
+    condition = Condition(column="reviewer_name", equals='John Doe')
+    conditions = [condition]
+    delete_reviews(conditions)
+

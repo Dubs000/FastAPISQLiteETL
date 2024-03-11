@@ -5,9 +5,9 @@ from typing import List
 
 from app.crud.read import get_all_reviews, run_select_query
 from app.crud.create import insert_reviews
-from app.crud.delete import delete_all_reviews
+from app.crud.delete import delete_reviews
 from app.routes.routes_logger import api_logger
-from app.models.models import QueryInput, Review
+from app.models.models import QueryInput, Review, Condition
 
 
 app = FastAPI()
@@ -28,30 +28,16 @@ curl -X GET http://127.0.0.1:8000/reviews/select \
 """
 @app.get("/reviews/select")
 async def run_query(query_input: QueryInput = Body(...)):
+    api_logger.info(f"GET request /reviews/select activated with body {query_input}")
     results = await run_in_threadpool(run_select_query, query_input)
     if results == "Error":
-        raise HTTPException(status_code=400, detail="Unable to run select query, see log for details.")
+        api_logger.error(f"An error occurred selecting rows from table, see database.log for detail")
+        raise HTTPException(status_code=400, detail="Unable to run select query, see database.log for details.")
     return JSONResponse(content=results, status_code=status.HTTP_200_OK)
 
-
-# curl -X GET http://127.0.0.1:8000/reviews/read
-@app.get("/reviews/read")
-async def read_items():
-    results = await run_in_threadpool(get_all_reviews)
-    if results == "Error":
-        raise HTTPException(status_code=400, detail="Unable to run select query, see log for details.")
-    return JSONResponse(content=results, status_code=status.HTTP_200_OK)
-
-
-# curl -X DELETE http://127.0.0.1:8000/reviews/delete
-@app.delete("/reviews/delete")
-async def remove_items():
-    api_logger.info(f"/reviews/delete triggered")
-    result = await run_in_threadpool(delete_all_reviews)
-    return result
 
 """
-curl -X PATCH http://127.0.0.1:8000/reviews/insert\
+curl -X POST http://127.0.0.1:8000/reviews/insert\
      -H "Content-Type: application/json" \
      -d '[{
             "reviewer_name": "Danny Walters", 
@@ -73,12 +59,31 @@ curl -X PATCH http://127.0.0.1:8000/reviews/insert\
             }
             ]'
 """
-@app.patch("/reviews/insert")
+@app.post("/reviews/insert")
 async def insert_reviews_into_db(reviews : List[Review] = Body(...)):
+    api_logger.info(f"POST request /reviews/insert activated with reviews {reviews}")
     inserted_ids = await run_in_threadpool(insert_reviews, reviews)
     if not inserted_ids:
+        api_logger.error(f"An error occurred when trying to insert records into DB, see database.log")
         raise HTTPException(status_code=400, detail="Unable to insert rows, see log for details.")
-    return JSONResponse(content={"inserted_ids": inserted_ids}, status_code=status.HTTP_201_CREATED)  # Changed status code to 201
+    return JSONResponse(content={"inserted_ids": inserted_ids}, status_code=status.HTTP_201_CREATED)
+
+
+"""
+curl -X DELETE http://127.0.0.1:8000/reviews/delete \
+    -H "Content-Type: application/json" \
+     -d '[
+               {"column": "reviewer_name", "contains": "Danny"}
+        ]'
+"""
+@app.delete("/reviews/delete")
+async def delete_reviews_from_db(conditions: List[Condition] = Body(...)):
+    api_logger.info(f"DELETE request /reviews/select activated with conditions {conditions}")
+    num_rows_deleted = await run_in_threadpool(delete_reviews, conditions)
+    if not num_rows_deleted:
+        api_logger.error(f"Unable to delete records from DB, see database.log")
+        raise HTTPException(status_code=400, detail="Unable to delete rows, see log for details.")
+    return JSONResponse(content={"num_deleted_rows": num_rows_deleted}, status_code=status.HTTP_201_CREATED)
 
 
 if __name__ == "__main__":
