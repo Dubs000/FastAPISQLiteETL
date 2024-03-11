@@ -1,17 +1,6 @@
-import pytest
-import sqlite3
+
 from app.data_loader.data_cleaning_and_transformation import prepare_data_for_loading
-from app.database.database import CREATE_TABLE_SQL, base_dir
-
-
-@pytest.fixture
-def test_db():
-    # Setup: Create a new database connection
-    conn = sqlite3.connect(":memory:")  # Use in-memory DB for tests
-    conn.execute(CREATE_TABLE_SQL)
-    yield conn  # This is where the testing happens
-    # Teardown: Close the database connection
-    conn.close()
+from app.database.database import base_dir
 
 
 def test_data_loading(test_db):
@@ -25,4 +14,4 @@ def test_data_loading(test_db):
     data = cursor.fetchall()
 
     expected_row_count = 16
-    assert len(data) == expected_row_count  # Replace with your validation logic
+    assert len(data) == expected_row_count

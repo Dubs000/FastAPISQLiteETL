@@ -62,27 +62,64 @@ def validate_and_convert_dtypes(df: pd.DataFrame, expected_datatypes: dict) -> U
 
 
 def convert_column_dtype(column, target_dtype):
+    """
+    Converts the data type of a pandas Series (column) to a specified target data type.
+
+    Args:
+        column (pd.Series): The column to be converted.
+        target_dtype (str): The target data type as a string.
+
+    Returns:
+        pd.Series: The converted column.
+
+    Raises:
+        InvalidColumnDtype: If the conversion process encounters an error.
+    """
     try:
         if target_dtype == 'dt.date':
+            # Convert to datetime and then to date (without time)
             return pd.to_datetime(column, errors='coerce').dt.date
         elif target_dtype == 'object':
-            # Strip whitespace from text based fields
+            # Clean string fields: strip whitespace and replace multiple spaces with a single space
             return column.str.strip().str.replace('\s+', ' ', regex=True).astype(str)
         else:
+            # For other data types, use direct conversion
             return column.astype(target_dtype)
     except Exception as e:
         error_msg = f"Error converting column: {e}"
         data_loader_logger.error(error_msg)
-        raise InvalidColumnDtype(error_msg)  # Return original column in case of error
+        raise InvalidColumnDtype(error_msg)
 
 
 def validate_input_datastructure_and_types(df: pd.DataFrame):
+    """
+    Validates and converts the data types of DataFrame columns to expected types.
+
+    Args:
+        df (pd.DataFrame): The DataFrame whose columns are to be validated and converted.
+
+    Returns:
+        pd.DataFrame: A DataFrame with columns converted to the expected data types.
+
+    Note:
+        This function expects a specific set of columns with defined target data types.
+    """
+    # Define the expected data types for each column
     expected_datatypes = {
-        'reviewer_name': 'object', 'review_title': 'object', 'review_rating': 'int64', 'review_content': 'object',
-        'email_address': 'object', 'country': 'object', 'review_date': 'dt.date'
+        'reviewer_name': 'object',
+        'review_title': 'object',
+        'review_rating': 'int64',
+        'review_content': 'object',
+        'email_address': 'object',
+        'country': 'object',
+        'review_date': 'dt.date'
     }
-    corrected_table_name_df = convert_col_names(df)
     data_loader_logger.info(f"Mapping of expected datatype: {expected_datatypes}")
+
+    # Convert column names to a consistent format
+    corrected_table_name_df = convert_col_names(df)
+
+    # Validate and convert data types of the DataFrame
     return validate_and_convert_dtypes(corrected_table_name_df, expected_datatypes)
 
 
@@ -97,40 +134,70 @@ def is_valid_rating(rating):
 
 
 def convert_country_names(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Converts the country names in a DataFrame to standardized short names and ISO3 codes.
+
+    The function uses the country_converter package to perform the conversion. If a country name
+    cannot be matched, it is replaced with "Not Found".
+
+    Args:
+        df (pd.DataFrame): The DataFrame with a 'country' column containing country names.
+
+    Returns:
+        pd.DataFrame: A new DataFrame where the 'country' column contains standardized
+                      short names and a new 'country_code' column contains ISO3 country codes.
+    """
     new_df = df.copy()
-    # Convert country names to short names if not found then view as "Not Found"
-    data_loader_logger.info(f"Converting values in 'country' column to standardised country names")
+    data_loader_logger.info("Converting 'country' column values to standardized short names.")
     country_names = cc.pandas_convert(series=new_df["country"], to='name_short', not_found="Not Found")
-    # Convert country names to ISO3 code if not found then view as "Not Found"
-    data_loader_logger.info(f"Converting values in 'country' column to standardised ISO3 country names")
+
+    data_loader_logger.info("Converting 'country' column values to standardized ISO3 country codes.")
     country_codes = cc.pandas_convert(series=new_df["country"], to='ISO3', not_found="Not Found")
+
     new_df["country"] = country_names
     new_df["country_code"] = country_codes
     return new_df
 
 
 def validate_emails_and_ratings(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Validates email addresses and review ratings in the DataFrame and removes invalid entries.
+
+    This function adds two boolean columns, `email_valid` and `rating_valid`, to the DataFrame.
+    It then filters out rows where emails are invalid or ratings are not meeting the criteria.
+
+    Args:
+        df (pd.DataFrame): The DataFrame containing the email addresses and review ratings.
+
+    Returns:
+        pd.DataFrame: A new DataFrame with invalid email addresses and ratings removed.
+
+    Note:
+        The function assumes the existence of `email_address` and `review_rating` columns in the DataFrame.
+    """
     new_df = df.copy()
-    # Add columns email_valid and rating_valid that are boolean
-    data_loader_logger.info(f"Validating email addresses via regex [^@]+@[^@]+\.[^@]+")
+    # Validate email addresses using regex pattern
+    data_loader_logger.info("Validating email addresses via regex pattern.")
     new_df['email_valid'] = new_df['email_address'].apply(is_valid_email)
-    data_loader_logger.info("Ensuring review ratings are > 0")
+
+    # Validate review ratings to ensure they meet certain criteria
+    data_loader_logger.info("Validating review ratings.")
     new_df['rating_valid'] = new_df['review_rating'].apply(is_valid_rating)
 
-    # Get rows with invalid emails/ratings
-    df_invalid_emails = new_df[~new_df['email_valid']][["reviewer_name", "email_address"]]
-    df_invalid_ratings = new_df[~new_df['rating_valid']][["reviewer_name", "review_rating"]]
+    # Log and identify invalid emails and ratings
+    df_invalid_emails = new_df[~new_df['email_valid']]
+    df_invalid_ratings = new_df[~new_df['rating_valid']]
     if not df_invalid_emails.empty:
-        data_loader_logger.warn(f"Dataframe contains invalid emails: \n{df_invalid_emails}\n, these emails will be "
-                                f"removed")
+        data_loader_logger.warn(f"Dataframe contains invalid emails, which will be removed: \n{df_invalid_emails}")
     if not df_invalid_ratings.empty:
-        data_loader_logger.warn(f"Dataframe contains invalid ratings: \n{df_invalid_ratings}\n, these ratings will be "
-                                f"removed")
+        data_loader_logger.warn(f"Dataframe contains invalid ratings, which will be removed: \n{df_invalid_ratings}")
 
-    # Remove invalid ratings and emails by filtering where email_valid AND rating_valid are both True
+    # Remove rows with invalid emails or ratings
     new_df = new_df[new_df['email_valid'] & new_df['rating_valid']]
-    new_df.drop(columns=['email_valid', 'rating_valid'], inplace=True)  # Remove these boolean columns
+    # Drop helper columns used for validation
+    new_df.drop(columns=['email_valid', 'rating_valid'], inplace=True)
     return new_df
+
 
 
 def clean_and_transform_data(df: pd.DataFrame) -> pd.DataFrame:

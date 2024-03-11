@@ -10,6 +10,7 @@ uvicorn = "*"
 fastapi = "*"
 country-converter = "*"
 email-validator = "*"
+requests = "*"
 
 [dev-packages]
 
