@@ -3,11 +3,13 @@ from starlette.concurrency import run_in_threadpool  # Allows synchronous code t
 from fastapi.responses import JSONResponse
 from typing import List
 
-from app.crud.read import get_all_reviews, run_select_query
 from app.crud.create import insert_reviews
+from app.crud.read import run_select_query
+from app.crud.update import update_review
 from app.crud.delete import delete_reviews
+
 from app.routes.routes_logger import api_logger
-from app.models.models import QueryInput, Review, Condition
+from app.models.models import QueryInput, Review, Condition, ColumnToUpdate
 
 
 app = FastAPI()
@@ -84,6 +86,37 @@ async def delete_reviews_from_db(conditions: List[Condition] = Body(...)):
         api_logger.error(f"Unable to delete records from DB, see database.log")
         raise HTTPException(status_code=400, detail="Unable to delete rows, see log for details.")
     return JSONResponse(content={"num_deleted_rows": num_rows_deleted}, status_code=status.HTTP_201_CREATED)
+
+
+"""
+curl -X PATCH http://127.0.0.1:8000/reviews/update \
+    -H "Content-Type: application/json" \
+    -d '{
+          "conditions": [
+            {
+              "column": "id",
+              "equals": "1"
+            }
+          ],
+          "columns_to_update": [
+            {
+              "column_name": "review_title",
+              "column_value": "Updated Title"
+            }
+          ]
+        }'
+"""
+@app.patch("/reviews/update")
+async def update_reviews_in_db(conditions: List[Condition] = Body(...),
+                               columns_to_update: List[ColumnToUpdate ] = Body(...)):
+    api_logger.info(f"PATCH request /reviews/update activated\n"
+                    f"conditions: {conditions}"
+                    f"columns_to_update: {columns_to_update}")
+    num_updated_rows = await run_in_threadpool(update_review, conditions, columns_to_update)
+    if not num_updated_rows:
+        api_logger.error(f"Unable to update records in db from submitted params, see database.log for details")
+        raise HTTPException(status_code=400, detail="Unable to update rows, see log for details.")
+    return JSONResponse(content={"num_updated_rows": num_updated_rows}, status_code=status.HTTP_201_CREATED)
 
 
 if __name__ == "__main__":
