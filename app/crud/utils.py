@@ -1,6 +1,6 @@
 from app.database.database_logger import database_logger
 from typing import List
-from app.models.models import Condition, QueryInput, Review
+from app.models.models import Condition, QueryInput, ColumnToUpdate
 
 """
 Parameterised queries are used here via the `?` syntax where the query is built and values supplied at
@@ -9,6 +9,22 @@ Used to prevent SQL injections
 
 Future functionality would include an `OR` operator as it is currently only able to do AND conditions
 """
+
+
+def build_update_clause(table_name: str, conditions: List[Condition], columns_to_update: List[ColumnToUpdate]):
+    where_clause, where_clause_params = build_where_clause(conditions)
+
+    set_clauses = []
+    set_clause_params = []
+    for col_to_update in columns_to_update:
+        set_clauses.append(f"{col_to_update.column_name} = ?")
+        set_clause_params.append(col_to_update.column_value)
+    set_clause_str = ", ".join(set_clauses)
+
+    # Combine SET and WHERE parameters in the correct order
+    update_params = set_clause_params + where_clause_params
+
+    return f"UPDATE {table_name} SET {set_clause_str} WHERE {where_clause}", update_params
 
 
 def build_where_clause(conditions=List[Condition]):

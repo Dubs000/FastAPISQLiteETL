@@ -14,10 +14,10 @@ def format_results_to_json(cursor):
 
 
 def get_all_reviews():
+    select_query, params = build_select_query(QueryInput(table="reviews"))
     try:
         with create_connection() as conn:
             cursor = conn.cursor()
-            select_query, params = build_select_query(QueryInput(table="reviews"))
             cursor.execute(select_query, params)
             results = format_results_to_json(cursor)
             return results
@@ -27,10 +27,10 @@ def get_all_reviews():
 
 
 def run_select_query(query_input: QueryInput):
+    select_query, params = build_select_query(query_input)
     try:
         with create_connection() as conn:
             cursor = conn.cursor()
-            select_query, params = build_select_query(query_input)
             cursor.execute(select_query, params)
             results = format_results_to_json(cursor)
             return results

@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import List, Optional, Union
 from pydantic import BaseModel, Field, EmailStr, field_validator, validator
 from country_converter import convert
 from datetime import date
@@ -43,6 +43,11 @@ class Condition(BaseModel):
     equals: Optional[str] = None
     contains: Optional[str] = None
     range: Optional[List[str]] = None
+
+
+class ColumnToUpdate(BaseModel):
+    column_name: str
+    column_value: Union[str, int, EmailStr, date]
 
 
 class QueryInput(BaseModel):
