@@ -38,11 +38,6 @@ class Review(BaseModel):
         return v
 
 
-class Reviews(BaseModel):
-    table: str
-    rows: List[Review]
-
-
 class Condition(BaseModel):
     column: str
     equals: Optional[str] = None

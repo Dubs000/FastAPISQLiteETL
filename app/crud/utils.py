@@ -1,6 +1,6 @@
 from app.database.database_logger import database_logger
 from typing import Iterable, List
-from app.models.models import Condition, QueryInput
+from app.models.models import Condition, QueryInput, Review
 
 """
 Parameterised queries are used here via the `?` syntax where the query is built and values supplied at
