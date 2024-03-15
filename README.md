@@ -69,7 +69,7 @@ pipenv run start_app
 
 ```
 
-Visit `http://localhost:8000` to access the API.
+Visit `http://localhost:8000` to access the API. For more information on API usage, see the [Usage Guide](docs/api_usage.md).
 
 ## Running Tests
 To run the automated tests:
