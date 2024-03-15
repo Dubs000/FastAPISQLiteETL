@@ -9,7 +9,7 @@ def initialize_and_load_data(csv_file_path=None):
 
     # Optionally, load data
     if csv_file_path:
-        load_data(csv_file_path)
+        load_data("reviews", csv_file_path)
 
 
 if __name__ == "__main__":
