@@ -1,0 +1,727 @@
+2024-03-09 00:30:10 - data_loader - INFO - Reading csv file into dataframe ../../data/reviews.csv
+2024-03-09 00:33:15 - data_loader - INFO - Reading csv file into dataframe ../../data/reviews.csv
+2024-03-09 00:33:15 - data_loader - INFO - Convering column names into standard snakecase format from Index(['    Reviewer Name', 'Review Title', 'Review Rating', 'Review Content',
+       'Email Address', 'Country', 'Review Date'],
+      dtype='object') to ['reviewer_name', 'review_title', 'review_rating', 'review_content', 'email_address', 'country', 'review_date']
+2024-03-09 00:33:15 - data_loader - INFO - Converting review_date from object to dt.date
+2024-03-09 00:33:15 - data_loader - INFO - Converting 
+2024-03-09 00:34:43 - data_loader - INFO - Reading csv file into dataframe ../../data/reviews.csv
+2024-03-09 00:34:43 - data_loader - INFO - Convering column names into standard snakecase format from Index(['    Reviewer Name', 'Review Title', 'Review Rating', 'Review Content',
+       'Email Address', 'Country', 'Review Date'],
+      dtype='object') to ['reviewer_name', 'review_title', 'review_rating', 'review_content', 'email_address', 'country', 'review_date']
+2024-03-09 00:34:43 - data_loader - INFO - Converting review_date from object to dt.date
+2024-03-09 00:40:51 - data_loader - INFO - Reading csv file into dataframe ../../data/reviews.csv
+2024-03-09 00:40:51 - data_loader - INFO - Convering column names into standard snakecase format from Index(['    Reviewer Name', 'Review Title', 'Review Rating', 'Review Content',
+       'Email Address', 'Country', 'Review Date'],
+      dtype='object') to ['reviewer_name', 'review_title', 'review_rating', 'review_content', 'email_address', 'country', 'review_date']
+2024-03-09 00:40:51 - data_loader - INFO - Mapping of expected datatype: {'reviewer_name': 'object', 'review_title': 'object', 'review_rating': 'int64', 'review_content': 'object', 'email_address': 'object', 'country': 'object', 'review_date': 'dt.date'}
+2024-03-09 00:40:51 - data_loader - INFO - Converting review_date from object to dt.date
+2024-03-09 00:40:51 - data_loader - INFO - Converting 
+2024-03-09 00:40:51 - data_loader - INFO - Converting values in 'country' column to standardised country names
+2024-03-09 00:40:51 - data_loader - INFO - Converting values in 'country' column to standardised ISO3 country names
+2024-03-09 00:40:51 - data_loader - INFO - Stripping whitespace and titling reviewer name
+2024-03-09 00:40:51 - data_loader - INFO - Validating email addresses via regex [^@]+@[^@]+\.[^@]+
+2024-03-09 00:40:51 - data_loader - INFO - Ensuring review ratings are > 0
+2024-03-09 00:40:51 - data_loader - WARNING - Dataframe contains invalid emails:     reviewer_name        review_title  ...  email_valid rating_valid
+2   Emily Johnson        Good Service  ...        False         True
+12   Grace Miller  Poor Communication  ...        False         True
+
+[2 rows x 10 columns], these emails will be removed
+2024-03-09 00:40:51 - data_loader - WARNING - Dataframe contains invalid ratings: Empty DataFrame
+Columns: [reviewer_name, review_title, review_rating, review_content, email_address, country, review_date, country_code, email_valid, rating_valid]
+Index: [], these ratings will be removed
+2024-03-09 00:41:56 - data_loader - INFO - Reading csv file into dataframe ../../data/reviews.csv
+2024-03-09 00:41:56 - data_loader - INFO - Convering column names into standard snakecase format from Index(['    Reviewer Name', 'Review Title', 'Review Rating', 'Review Content',
+       'Email Address', 'Country', 'Review Date'],
+      dtype='object') to ['reviewer_name', 'review_title', 'review_rating', 'review_content', 'email_address', 'country', 'review_date']
+2024-03-09 00:41:56 - data_loader - INFO - Mapping of expected datatype: {'reviewer_name': 'object', 'review_title': 'object', 'review_rating': 'int64', 'review_content': 'object', 'email_address': 'object', 'country': 'object', 'review_date': 'dt.date'}
+2024-03-09 00:41:56 - data_loader - INFO - Converting review_date from object to dt.date
+2024-03-09 00:42:05 - data_loader - INFO - Converting 
+2024-03-09 00:42:05 - data_loader - INFO - Converting values in 'country' column to standardised country names
+2024-03-09 00:42:05 - data_loader - INFO - Converting values in 'country' column to standardised ISO3 country names
+2024-03-09 00:42:05 - data_loader - INFO - Stripping whitespace and titling reviewer name
+2024-03-09 00:42:05 - data_loader - INFO - Validating email addresses via regex [^@]+@[^@]+\.[^@]+
+2024-03-09 00:42:05 - data_loader - INFO - Ensuring review ratings are > 0
+2024-03-09 00:44:14 - data_loader - INFO - Reading csv file into dataframe ../../data/reviews.csv
+2024-03-09 00:44:14 - data_loader - INFO - Convering column names into standard snakecase format from Index(['    Reviewer Name', 'Review Title', 'Review Rating', 'Review Content',
+       'Email Address', 'Country', 'Review Date'],
+      dtype='object') to ['reviewer_name', 'review_title', 'review_rating', 'review_content', 'email_address', 'country', 'review_date']
+2024-03-09 00:44:14 - data_loader - INFO - Mapping of expected datatype: {'reviewer_name': 'object', 'review_title': 'object', 'review_rating': 'int64', 'review_content': 'object', 'email_address': 'object', 'country': 'object', 'review_date': 'dt.date'}
+2024-03-09 00:44:14 - data_loader - INFO - Converting review_date from object to dt.date
+2024-03-09 00:44:14 - data_loader - INFO - Converting 
+2024-03-09 00:44:14 - data_loader - INFO - Converting values in 'country' column to standardised country names
+2024-03-09 00:44:14 - data_loader - INFO - Converting values in 'country' column to standardised ISO3 country names
+2024-03-09 00:44:14 - data_loader - INFO - Stripping whitespace and titling reviewer name
+2024-03-09 00:44:14 - data_loader - INFO - Validating email addresses via regex [^@]+@[^@]+\.[^@]+
+2024-03-09 00:44:14 - data_loader - INFO - Ensuring review ratings are > 0
+2024-03-09 00:44:14 - data_loader - WARNING - Dataframe contains invalid emails:     reviewer_name              email_address
+2   Emily Johnson  invalid_email_example.com
+12   Grace Miller   invalid_email@examplecom, these emails will be removed
+2024-03-09 00:44:14 - data_loader - WARNING - Dataframe contains invalid ratings: Empty DataFrame
+Columns: [reviewer_name, review_rating]
+Index: [], these ratings will be removed
+2024-03-09 00:45:14 - data_loader - INFO - Reading csv file into dataframe ../../data/reviews.csv
+2024-03-09 00:45:14 - data_loader - INFO - Convering column names into standard snakecase format from Index(['    Reviewer Name', 'Review Title', 'Review Rating', 'Review Content',
+       'Email Address', 'Country', 'Review Date'],
+      dtype='object') to ['reviewer_name', 'review_title', 'review_rating', 'review_content', 'email_address', 'country', 'review_date']
+2024-03-09 00:45:14 - data_loader - INFO - Mapping of expected datatype: {'reviewer_name': 'object', 'review_title': 'object', 'review_rating': 'int64', 'review_content': 'object', 'email_address': 'object', 'country': 'object', 'review_date': 'dt.date'}
+2024-03-09 00:45:14 - data_loader - INFO - Converting review_date from object to dt.date
+2024-03-09 00:45:14 - data_loader - INFO - Converting 
+2024-03-09 00:45:14 - data_loader - INFO - Converting values in 'country' column to standardised country names
+2024-03-09 00:45:15 - data_loader - INFO - Converting values in 'country' column to standardised ISO3 country names
+2024-03-09 00:45:15 - data_loader - INFO - Stripping whitespace and titling reviewer name
+2024-03-09 00:45:15 - data_loader - INFO - Validating email addresses via regex [^@]+@[^@]+\.[^@]+
+2024-03-09 00:45:15 - data_loader - INFO - Ensuring review ratings are > 0
+2024-03-09 00:45:15 - data_loader - WARNING - Dataframe contains invalid emails: 
+    reviewer_name              email_address
+2   Emily Johnson  invalid_email_example.com
+12   Grace Miller   invalid_email@examplecom
+, these emails will be removed
+2024-03-09 00:45:15 - data_loader - WARNING - Dataframe contains invalid ratings: 
+Empty DataFrame
+Columns: [reviewer_name, review_rating]
+Index: []
+, these ratings will be removed
+2024-03-09 00:46:14 - data_loader - INFO - Reading csv file into dataframe ../../data/reviews.csv
+2024-03-09 00:46:14 - data_loader - INFO - Convering column names into standard snakecase format from Index(['    Reviewer Name', 'Review Title', 'Review Rating', 'Review Content',
+       'Email Address', 'Country', 'Review Date'],
+      dtype='object') to ['reviewer_name', 'review_title', 'review_rating', 'review_content', 'email_address', 'country', 'review_date']
+2024-03-09 00:46:14 - data_loader - INFO - Mapping of expected datatype: {'reviewer_name': 'object', 'review_title': 'object', 'review_rating': 'int64', 'review_content': 'object', 'email_address': 'object', 'country': 'object', 'review_date': 'dt.date'}
+2024-03-09 00:46:14 - data_loader - INFO - Converting review_date from object to dt.date
+2024-03-09 00:46:14 - data_loader - INFO - Converting 
+2024-03-09 00:46:14 - data_loader - INFO - Converting values in 'country' column to standardised country names
+2024-03-09 00:46:14 - data_loader - INFO - Converting values in 'country' column to standardised ISO3 country names
+2024-03-09 00:46:14 - data_loader - INFO - Stripping whitespace and titling reviewer name
+2024-03-09 00:46:14 - data_loader - INFO - Validating email addresses via regex [^@]+@[^@]+\.[^@]+
+2024-03-09 00:46:14 - data_loader - INFO - Ensuring review ratings are > 0
+2024-03-09 00:46:44 - data_loader - INFO - Reading csv file into dataframe ../../data/reviews.csv
+2024-03-09 00:46:44 - data_loader - INFO - Convering column names into standard snakecase format from Index(['    Reviewer Name', 'Review Title', 'Review Rating', 'Review Content',
+       'Email Address', 'Country', 'Review Date'],
+      dtype='object') to ['reviewer_name', 'review_title', 'review_rating', 'review_content', 'email_address', 'country', 'review_date']
+2024-03-09 00:46:44 - data_loader - INFO - Mapping of expected datatype: {'reviewer_name': 'object', 'review_title': 'object', 'review_rating': 'int64', 'review_content': 'object', 'email_address': 'object', 'country': 'object', 'review_date': 'dt.date'}
+2024-03-09 00:46:44 - data_loader - INFO - Converting review_date from object to dt.date
+2024-03-09 00:46:44 - data_loader - INFO - Converting 
+2024-03-09 00:46:44 - data_loader - INFO - Converting values in 'country' column to standardised country names
+2024-03-09 00:46:44 - data_loader - INFO - Converting values in 'country' column to standardised ISO3 country names
+2024-03-09 00:46:44 - data_loader - INFO - Stripping whitespace and titling reviewer name
+2024-03-09 00:46:44 - data_loader - INFO - Validating email addresses via regex [^@]+@[^@]+\.[^@]+
+2024-03-09 00:46:44 - data_loader - INFO - Ensuring review ratings are > 0
+2024-03-09 00:46:44 - data_loader - WARNING - Dataframe contains invalid emails: 
+    reviewer_name              email_address
+2   Emily Johnson  invalid_email_example.com
+12   Grace Miller   invalid_email@examplecom
+, these emails will be removed
+2024-03-09 00:55:01 - data_loader - INFO - Reading csv file into dataframe ../../data/reviews.csv
+2024-03-09 00:55:01 - data_loader - INFO - Convering column names into standard snakecase format from Index(['    Reviewer Name', 'Review Title', 'Review Rating', 'Review Content',
+       'Email Address', 'Country', 'Review Date'],
+      dtype='object') to ['reviewer_name', 'review_title', 'review_rating', 'review_content', 'email_address', 'country', 'review_date']
+2024-03-09 00:55:01 - data_loader - INFO - Mapping of expected datatype: {'reviewer_name': 'object', 'review_title': 'object', 'review_rating': 'int64', 'review_content': 'object', 'email_address': 'object', 'country': 'object', 'review_date': 'dt.date'}
+2024-03-09 00:55:01 - data_loader - INFO - Converting review_date from object to dt.date
+2024-03-09 00:55:01 - data_loader - INFO - Converting values in 'country' column to standardised country names
+2024-03-09 00:55:01 - data_loader - INFO - Converting values in 'country' column to standardised ISO3 country names
+2024-03-09 00:55:01 - data_loader - INFO - Stripping whitespace and titling reviewer name
+2024-03-09 00:55:01 - data_loader - INFO - Validating email addresses via regex [^@]+@[^@]+\.[^@]+
+2024-03-09 00:55:01 - data_loader - INFO - Ensuring review ratings are > 0
+2024-03-09 00:55:01 - data_loader - WARNING - Dataframe contains invalid emails: 
+    reviewer_name              email_address
+2   Emily Johnson  invalid_email_example.com
+12   Grace Miller   invalid_email@examplecom
+, these emails will be removed
+2024-03-09 01:06:29 - data_loader - INFO - Reading csv file into dataframe data/reviews.csv
+2024-03-09 01:06:29 - data_loader - INFO - Convering column names into standard snakecase format from Index(['    Reviewer Name', 'Review Title', 'Review Rating', 'Review Content',
+       'Email Address', 'Country', 'Review Date'],
+      dtype='object') to ['reviewer_name', 'review_title', 'review_rating', 'review_content', 'email_address', 'country', 'review_date']
+2024-03-09 01:06:29 - data_loader - INFO - Mapping of expected datatype: {'reviewer_name': 'object', 'review_title': 'object', 'review_rating': 'int64', 'review_content': 'object', 'email_address': 'object', 'country': 'object', 'country_code': 'object', 'review_date': 'dt.date'}
+2024-03-09 01:06:29 - data_loader - WARNING - Expected column 'country_code' not found in DataFrame
+2024-03-09 01:06:29 - data_loader - INFO - Converting review_date from object to dt.date
+2024-03-09 01:06:29 - data_loader - ERROR - Missing columns in input data, please investigate, missing columns = ['country_code']
+2024-03-09 01:06:53 - data_loader - INFO - Reading csv file into dataframe data/reviews.csv
+2024-03-09 01:06:53 - data_loader - INFO - Convering column names into standard snakecase format from Index(['    Reviewer Name', 'Review Title', 'Review Rating', 'Review Content',
+       'Email Address', 'Country', 'Review Date'],
+      dtype='object') to ['reviewer_name', 'review_title', 'review_rating', 'review_content', 'email_address', 'country', 'review_date']
+2024-03-09 01:06:53 - data_loader - INFO - Mapping of expected datatype: {'reviewer_name': 'object', 'review_title': 'object', 'review_rating': 'int64', 'review_content': 'object', 'email_address': 'object', 'country': 'object', 'review_date': 'dt.date'}
+2024-03-09 01:06:53 - data_loader - INFO - Converting review_date from object to dt.date
+2024-03-09 01:06:53 - data_loader - INFO - Converting values in 'country' column to standardised country names
+2024-03-09 01:06:53 - data_loader - INFO - Converting values in 'country' column to standardised ISO3 country names
+2024-03-09 01:06:53 - data_loader - INFO - Stripping whitespace and titling reviewer name
+2024-03-09 01:06:53 - data_loader - INFO - Validating email addresses via regex [^@]+@[^@]+\.[^@]+
+2024-03-09 01:06:53 - data_loader - INFO - Ensuring review ratings are > 0
+2024-03-09 01:06:53 - data_loader - WARNING - Dataframe contains invalid emails: 
+    reviewer_name              email_address
+2   Emily Johnson  invalid_email_example.com
+12   Grace Miller   invalid_email@examplecom
+, these emails will be removed
+2024-03-09 01:12:51 - data_loader - INFO - Reading csv file into dataframe /Users/faye/PycharmProjects/TrustpilotDataOpsTest/data/reviews.csv
+2024-03-09 01:12:51 - data_loader - INFO - Convering column names into standard snakecase format from Index(['    Reviewer Name', 'Review Title', 'Review Rating', 'Review Content',
+       'Email Address', 'Country', 'Review Date'],
+      dtype='object') to ['reviewer_name', 'review_title', 'review_rating', 'review_content', 'email_address', 'country', 'review_date']
+2024-03-09 01:12:51 - data_loader - INFO - Mapping of expected datatype: {'reviewer_name': 'object', 'review_title': 'object', 'review_rating': 'int64', 'review_content': 'object', 'email_address': 'object', 'country': 'object', 'review_date': 'dt.date'}
+2024-03-09 01:12:51 - data_loader - INFO - Converting review_date from object to dt.date
+2024-03-09 01:12:51 - data_loader - INFO - Converting values in 'country' column to standardised country names
+2024-03-09 01:12:51 - data_loader - INFO - Converting values in 'country' column to standardised ISO3 country names
+2024-03-09 01:12:51 - data_loader - INFO - Stripping whitespace and titling reviewer name
+2024-03-09 01:12:51 - data_loader - INFO - Validating email addresses via regex [^@]+@[^@]+\.[^@]+
+2024-03-09 01:12:51 - data_loader - INFO - Ensuring review ratings are > 0
+2024-03-09 01:12:51 - data_loader - WARNING - Dataframe contains invalid emails: 
+    reviewer_name              email_address
+2   Emily Johnson  invalid_email_example.com
+12   Grace Miller   invalid_email@examplecom
+, these emails will be removed
+2024-03-09 01:12:51 - data_loader - INFO - Loading data into table reviews
+2024-03-09 01:13:12 - data_loader - INFO - Reading csv file into dataframe /Users/faye/PycharmProjects/TrustpilotDataOpsTest/data/reviews.csv
+2024-03-09 01:13:12 - data_loader - INFO - Convering column names into standard snakecase format from Index(['    Reviewer Name', 'Review Title', 'Review Rating', 'Review Content',
+       'Email Address', 'Country', 'Review Date'],
+      dtype='object') to ['reviewer_name', 'review_title', 'review_rating', 'review_content', 'email_address', 'country', 'review_date']
+2024-03-09 01:13:12 - data_loader - INFO - Mapping of expected datatype: {'reviewer_name': 'object', 'review_title': 'object', 'review_rating': 'int64', 'review_content': 'object', 'email_address': 'object', 'country': 'object', 'review_date': 'dt.date'}
+2024-03-09 01:13:12 - data_loader - INFO - Converting review_date from object to dt.date
+2024-03-09 01:13:12 - data_loader - INFO - Converting values in 'country' column to standardised country names
+2024-03-09 01:13:12 - data_loader - INFO - Converting values in 'country' column to standardised ISO3 country names
+2024-03-09 01:13:12 - data_loader - INFO - Stripping whitespace and titling reviewer name
+2024-03-09 01:13:12 - data_loader - INFO - Validating email addresses via regex [^@]+@[^@]+\.[^@]+
+2024-03-09 01:13:12 - data_loader - INFO - Ensuring review ratings are > 0
+2024-03-09 01:13:12 - data_loader - WARNING - Dataframe contains invalid emails: 
+    reviewer_name              email_address
+2   Emily Johnson  invalid_email_example.com
+12   Grace Miller   invalid_email@examplecom
+, these emails will be removed
+2024-03-09 01:13:12 - data_loader - INFO - Loading data into table `reviews`
+2024-03-09 01:13:20 - data_loader - INFO - Reading csv file into dataframe /Users/faye/PycharmProjects/TrustpilotDataOpsTest/data/reviews.csv
+2024-03-09 01:13:20 - data_loader - INFO - Convering column names into standard snakecase format from Index(['    Reviewer Name', 'Review Title', 'Review Rating', 'Review Content',
+       'Email Address', 'Country', 'Review Date'],
+      dtype='object') to ['reviewer_name', 'review_title', 'review_rating', 'review_content', 'email_address', 'country', 'review_date']
+2024-03-09 01:13:20 - data_loader - INFO - Mapping of expected datatype: {'reviewer_name': 'object', 'review_title': 'object', 'review_rating': 'int64', 'review_content': 'object', 'email_address': 'object', 'country': 'object', 'review_date': 'dt.date'}
+2024-03-09 01:13:20 - data_loader - INFO - Converting review_date from object to dt.date
+2024-03-09 01:13:20 - data_loader - INFO - Converting values in 'country' column to standardised country names
+2024-03-09 01:13:20 - data_loader - INFO - Converting values in 'country' column to standardised ISO3 country names
+2024-03-09 01:13:20 - data_loader - INFO - Stripping whitespace and titling reviewer name
+2024-03-09 01:13:20 - data_loader - INFO - Validating email addresses via regex [^@]+@[^@]+\.[^@]+
+2024-03-09 01:13:20 - data_loader - INFO - Ensuring review ratings are > 0
+2024-03-09 01:13:20 - data_loader - WARNING - Dataframe contains invalid emails: 
+    reviewer_name              email_address
+2   Emily Johnson  invalid_email_example.com
+12   Grace Miller   invalid_email@examplecom
+, these emails will be removed
+2024-03-09 01:13:20 - data_loader - INFO - Loading data into table `reviews`
+2024-03-09 01:17:21 - data_loader - INFO - Reading csv file into dataframe /Users/faye/PycharmProjects/TrustpilotDataOpsTest/data/reviews.csv
+2024-03-09 01:17:21 - data_loader - INFO - Convering column names into standard snakecase format from Index(['    Reviewer Name', 'Review Title', 'Review Rating', 'Review Content',
+       'Email Address', 'Country', 'Review Date'],
+      dtype='object') to ['reviewer_name', 'review_title', 'review_rating', 'review_content', 'email_address', 'country', 'review_date']
+2024-03-09 01:17:21 - data_loader - INFO - Mapping of expected datatype: {'reviewer_name': 'object', 'review_title': 'object', 'review_rating': 'int64', 'review_content': 'object', 'email_address': 'object', 'country': 'object', 'review_date': 'dt.date'}
+2024-03-09 01:17:21 - data_loader - INFO - Converting review_date from object to dt.date
+2024-03-09 01:17:21 - data_loader - INFO - Converting values in 'country' column to standardised country names
+2024-03-09 01:17:21 - data_loader - INFO - Converting values in 'country' column to standardised ISO3 country names
+2024-03-09 01:17:21 - data_loader - INFO - Stripping whitespace and titling reviewer name
+2024-03-09 01:17:21 - data_loader - INFO - Validating email addresses via regex [^@]+@[^@]+\.[^@]+
+2024-03-09 01:17:21 - data_loader - INFO - Ensuring review ratings are > 0
+2024-03-09 01:17:21 - data_loader - WARNING - Dataframe contains invalid emails: 
+    reviewer_name              email_address
+2   Emily Johnson  invalid_email_example.com
+12   Grace Miller   invalid_email@examplecom
+, these emails will be removed
+2024-03-09 01:17:21 - data_loader - INFO - Loading data into table `reviews`
+2024-03-09 01:17:21 - data_loader - INFO - Expecting to load `16 rows
+2024-03-09 01:17:43 - data_loader - INFO - Reading csv file into dataframe /Users/faye/PycharmProjects/TrustpilotDataOpsTest/data/reviews.csv
+2024-03-09 01:17:43 - data_loader - INFO - Convering column names into standard snakecase format from Index(['    Reviewer Name', 'Review Title', 'Review Rating', 'Review Content',
+       'Email Address', 'Country', 'Review Date'],
+      dtype='object') to ['reviewer_name', 'review_title', 'review_rating', 'review_content', 'email_address', 'country', 'review_date']
+2024-03-09 01:17:43 - data_loader - INFO - Mapping of expected datatype: {'reviewer_name': 'object', 'review_title': 'object', 'review_rating': 'int64', 'review_content': 'object', 'email_address': 'object', 'country': 'object', 'review_date': 'dt.date'}
+2024-03-09 01:17:43 - data_loader - INFO - Converting review_date from object to dt.date
+2024-03-09 01:17:43 - data_loader - INFO - Converting values in 'country' column to standardised country names
+2024-03-09 01:17:43 - data_loader - INFO - Converting values in 'country' column to standardised ISO3 country names
+2024-03-09 01:17:43 - data_loader - INFO - Stripping whitespace and titling reviewer name
+2024-03-09 01:17:43 - data_loader - INFO - Validating email addresses via regex [^@]+@[^@]+\.[^@]+
+2024-03-09 01:17:43 - data_loader - INFO - Ensuring review ratings are > 0
+2024-03-09 01:17:43 - data_loader - WARNING - Dataframe contains invalid emails: 
+    reviewer_name              email_address
+2   Emily Johnson  invalid_email_example.com
+12   Grace Miller   invalid_email@examplecom
+, these emails will be removed
+2024-03-09 01:17:43 - data_loader - INFO - Loading data into table `reviews`
+2024-03-09 01:17:43 - data_loader - INFO - Expecting to load `16 rows
+2024-03-09 01:17:43 - data_loader - INFO - 16 rows loaded successfully
+2024-03-09 01:17:43 - data_loader - INFO - Closing connection
+2024-03-09 01:18:09 - data_loader - INFO - Reading csv file into dataframe /Users/faye/PycharmProjects/TrustpilotDataOpsTest/data/reviews.csv
+2024-03-09 01:18:09 - data_loader - INFO - Convering column names into standard snakecase format from Index(['    Reviewer Name', 'Review Title', 'Review Rating', 'Review Content',
+       'Email Address', 'Country', 'Review Date'],
+      dtype='object') to ['reviewer_name', 'review_title', 'review_rating', 'review_content', 'email_address', 'country', 'review_date']
+2024-03-09 01:18:09 - data_loader - INFO - Mapping of expected datatype: {'reviewer_name': 'object', 'review_title': 'object', 'review_rating': 'int64', 'review_content': 'object', 'email_address': 'object', 'country': 'object', 'review_date': 'dt.date'}
+2024-03-09 01:18:09 - data_loader - INFO - Converting review_date from object to dt.date
+2024-03-09 01:18:09 - data_loader - INFO - Converting values in 'country' column to standardised country names
+2024-03-09 01:18:09 - data_loader - INFO - Converting values in 'country' column to standardised ISO3 country names
+2024-03-09 01:18:09 - data_loader - INFO - Stripping whitespace and titling reviewer name
+2024-03-09 01:18:09 - data_loader - INFO - Validating email addresses via regex [^@]+@[^@]+\.[^@]+
+2024-03-09 01:18:09 - data_loader - INFO - Ensuring review ratings are > 0
+2024-03-09 01:18:09 - data_loader - WARNING - Dataframe contains invalid emails: 
+    reviewer_name              email_address
+2   Emily Johnson  invalid_email_example.com
+12   Grace Miller   invalid_email@examplecom
+, these emails will be removed
+2024-03-09 01:18:09 - data_loader - INFO - Expecting to load `16` rows into `reviews`
+2024-03-09 01:18:09 - data_loader - INFO - 16 rows loaded successfully
+2024-03-09 01:18:09 - data_loader - INFO - Closing connection
+2024-03-09 01:19:01 - data_loader - INFO - Reading csv file into dataframe ../../data/reviews.csv
+2024-03-09 01:25:01 - data_loader - INFO - Reading csv file into dataframe data/reviews.csv
+2024-03-09 01:25:01 - data_loader - INFO - Convering column names into standard snakecase format from Index(['    Reviewer Name', 'Review Title', 'Review Rating', 'Review Content',
+       'Email Address', 'Country', 'Review Date'],
+      dtype='object') to ['reviewer_name', 'review_title', 'review_rating', 'review_content', 'email_address', 'country', 'review_date']
+2024-03-09 01:25:01 - data_loader - INFO - Mapping of expected datatype: {'reviewer_name': 'object', 'review_title': 'object', 'review_rating': 'int64', 'review_content': 'object', 'email_address': 'object', 'country': 'object', 'review_date': 'dt.date'}
+2024-03-09 01:25:01 - data_loader - INFO - Converting review_date from object to dt.date
+2024-03-09 01:25:01 - data_loader - INFO - Converting values in 'country' column to standardised country names
+2024-03-09 01:25:02 - data_loader - INFO - Converting values in 'country' column to standardised ISO3 country names
+2024-03-09 01:25:02 - data_loader - INFO - Stripping whitespace and titling reviewer name
+2024-03-09 01:25:02 - data_loader - INFO - Validating email addresses via regex [^@]+@[^@]+\.[^@]+
+2024-03-09 01:25:02 - data_loader - INFO - Ensuring review ratings are > 0
+2024-03-09 01:25:02 - data_loader - WARNING - Dataframe contains invalid emails: 
+    reviewer_name              email_address
+2   Emily Johnson  invalid_email_example.com
+12   Grace Miller   invalid_email@examplecom
+, these emails will be removed
+2024-03-09 01:25:02 - data_loader - INFO - Expecting to load `16` rows into `reviews`
+2024-03-09 01:25:02 - data_loader - INFO - 16 rows loaded successfully
+2024-03-09 01:25:02 - data_loader - INFO - Closing connection
+2024-03-09 12:46:14 - data_loader - INFO - Converting integer_column from object to int64
+2024-03-09 12:46:14 - data_loader - ERROR - Error converting column: invalid literal for int() with base 10: 'hello'
+2024-03-09 12:46:14 - data_loader - INFO - Converting integer_column from object to int64
+2024-03-09 12:46:14 - data_loader - INFO - Converting datetime_column from object to datetime64[ns]
+2024-03-09 12:46:14 - data_loader - WARNING - Expected column 'object_column' not found in DataFrame
+2024-03-09 12:46:14 - data_loader - ERROR - Missing columns in input data, please investigate, missing columns = ['object_column']
+2024-03-09 12:46:14 - data_loader - INFO - Converting integer_column from object to int64
+2024-03-09 12:46:14 - data_loader - INFO - Converting datetime_column from object to dt.date
+2024-03-09 12:46:14 - data_loader - INFO - Convering column names into standard snakecase format from Index(['Col 1', 'Col 2', 'Column 3', 'column_4'], dtype='object') to ['col_1', 'col_2', 'column_3', 'column_4']
+2024-03-09 12:46:14 - data_loader - INFO - Reading csv file into dataframe /Users/faye/PycharmProjects/TrustpilotDataOpsTest//tests/test_reviews.csv
+2024-03-09 12:46:14 - data_loader - INFO - Convering column names into standard snakecase format from Index(['    Reviewer Name', 'Review Title', 'Review Rating', 'Review Content',
+       'Email Address', 'Country', 'Review Date'],
+      dtype='object') to ['reviewer_name', 'review_title', 'review_rating', 'review_content', 'email_address', 'country', 'review_date']
+2024-03-09 12:46:14 - data_loader - INFO - Mapping of expected datatype: {'reviewer_name': 'object', 'review_title': 'object', 'review_rating': 'int64', 'review_content': 'object', 'email_address': 'object', 'country': 'object', 'review_date': 'dt.date'}
+2024-03-09 12:46:14 - data_loader - INFO - Converting review_date from object to dt.date
+2024-03-09 12:46:14 - data_loader - INFO - Converting values in 'country' column to standardised country names
+2024-03-09 12:46:14 - data_loader - INFO - Converting values in 'country' column to standardised ISO3 country names
+2024-03-09 12:46:14 - data_loader - INFO - Stripping whitespace and titling reviewer name
+2024-03-09 12:46:14 - data_loader - INFO - Validating email addresses via regex [^@]+@[^@]+\.[^@]+
+2024-03-09 12:46:14 - data_loader - INFO - Ensuring review ratings are > 0
+2024-03-09 12:46:14 - data_loader - WARNING - Dataframe contains invalid emails: 
+    reviewer_name              email_address
+2   Emily Johnson  invalid_email_example.com
+12   Grace Miller   invalid_email@examplecom
+, these emails will be removed
+2024-03-09 12:46:51 - data_loader - INFO - Converting integer_column from object to int64
+2024-03-09 12:46:51 - data_loader - ERROR - Error converting column: invalid literal for int() with base 10: 'hello'
+2024-03-09 12:46:51 - data_loader - INFO - Converting integer_column from object to int64
+2024-03-09 12:46:51 - data_loader - INFO - Converting datetime_column from object to datetime64[ns]
+2024-03-09 12:46:51 - data_loader - WARNING - Expected column 'object_column' not found in DataFrame
+2024-03-09 12:46:51 - data_loader - ERROR - Missing columns in input data, please investigate, missing columns = ['object_column']
+2024-03-09 12:46:51 - data_loader - INFO - Converting integer_column from object to int64
+2024-03-09 12:46:51 - data_loader - INFO - Converting datetime_column from object to dt.date
+2024-03-09 12:46:51 - data_loader - INFO - Convering column names into standard snakecase format from Index(['Col 1', 'Col 2', 'Column 3', 'column_4'], dtype='object') to ['col_1', 'col_2', 'column_3', 'column_4']
+2024-03-09 12:46:51 - data_loader - INFO - Reading csv file into dataframe /Users/faye/PycharmProjects/TrustpilotDataOpsTest//tests/test_reviews.csv
+2024-03-09 12:46:51 - data_loader - INFO - Convering column names into standard snakecase format from Index(['    Reviewer Name', 'Review Title', 'Review Rating', 'Review Content',
+       'Email Address', 'Country', 'Review Date'],
+      dtype='object') to ['reviewer_name', 'review_title', 'review_rating', 'review_content', 'email_address', 'country', 'review_date']
+2024-03-09 12:46:51 - data_loader - INFO - Mapping of expected datatype: {'reviewer_name': 'object', 'review_title': 'object', 'review_rating': 'int64', 'review_content': 'object', 'email_address': 'object', 'country': 'object', 'review_date': 'dt.date'}
+2024-03-09 12:46:51 - data_loader - INFO - Converting review_date from object to dt.date
+2024-03-09 12:46:51 - data_loader - INFO - Converting values in 'country' column to standardised country names
+2024-03-09 12:46:51 - data_loader - INFO - Converting values in 'country' column to standardised ISO3 country names
+2024-03-09 12:46:51 - data_loader - INFO - Stripping whitespace and titling reviewer name
+2024-03-09 12:46:51 - data_loader - INFO - Validating email addresses via regex [^@]+@[^@]+\.[^@]+
+2024-03-09 12:46:51 - data_loader - INFO - Ensuring review ratings are > 0
+2024-03-09 12:46:51 - data_loader - WARNING - Dataframe contains invalid emails: 
+    reviewer_name              email_address
+2   Emily Johnson  invalid_email_example.com
+12   Grace Miller   invalid_email@examplecom
+, these emails will be removed
+2024-03-09 12:47:14 - data_loader - INFO - Converting integer_column from object to int64
+2024-03-09 12:47:14 - data_loader - ERROR - Error converting column: invalid literal for int() with base 10: 'hello'
+2024-03-09 12:47:14 - data_loader - INFO - Converting integer_column from object to int64
+2024-03-09 12:47:14 - data_loader - INFO - Converting datetime_column from object to datetime64[ns]
+2024-03-09 12:47:14 - data_loader - WARNING - Expected column 'object_column' not found in DataFrame
+2024-03-09 12:47:14 - data_loader - ERROR - Missing columns in input data, please investigate, missing columns = ['object_column']
+2024-03-09 12:47:14 - data_loader - INFO - Converting integer_column from object to int64
+2024-03-09 12:47:14 - data_loader - INFO - Converting datetime_column from object to dt.date
+2024-03-09 12:47:14 - data_loader - INFO - Convering column names into standard snakecase format from Index(['Col 1', 'Col 2', 'Column 3', 'column_4'], dtype='object') to ['col_1', 'col_2', 'column_3', 'column_4']
+2024-03-09 12:47:14 - data_loader - INFO - Reading csv file into dataframe /Users/faye/PycharmProjects/TrustpilotDataOpsTest//tests/test_reviews.csv
+2024-03-09 12:47:14 - data_loader - INFO - Convering column names into standard snakecase format from Index(['    Reviewer Name', 'Review Title', 'Review Rating', 'Review Content',
+       'Email Address', 'Country', 'Review Date'],
+      dtype='object') to ['reviewer_name', 'review_title', 'review_rating', 'review_content', 'email_address', 'country', 'review_date']
+2024-03-09 12:47:14 - data_loader - INFO - Mapping of expected datatype: {'reviewer_name': 'object', 'review_title': 'object', 'review_rating': 'int64', 'review_content': 'object', 'email_address': 'object', 'country': 'object', 'review_date': 'dt.date'}
+2024-03-09 12:47:14 - data_loader - INFO - Converting review_date from object to dt.date
+2024-03-09 12:47:14 - data_loader - INFO - Converting values in 'country' column to standardised country names
+2024-03-09 12:47:14 - data_loader - INFO - Converting values in 'country' column to standardised ISO3 country names
+2024-03-09 12:47:14 - data_loader - INFO - Stripping whitespace and titling reviewer name
+2024-03-09 12:47:14 - data_loader - INFO - Validating email addresses via regex [^@]+@[^@]+\.[^@]+
+2024-03-09 12:47:14 - data_loader - INFO - Ensuring review ratings are > 0
+2024-03-09 12:47:14 - data_loader - WARNING - Dataframe contains invalid emails: 
+    reviewer_name              email_address
+2   Emily Johnson  invalid_email_example.com
+12   Grace Miller   invalid_email@examplecom
+, these emails will be removed
+2024-03-10 21:46:48 - data_loader - INFO - Converting integer_column from object to int64
+2024-03-10 21:46:48 - data_loader - ERROR - Error converting column: invalid literal for int() with base 10: 'hello'
+2024-03-10 21:46:48 - data_loader - INFO - Converting integer_column from object to int64
+2024-03-10 21:46:48 - data_loader - INFO - Converting datetime_column from object to datetime64[ns]
+2024-03-10 21:46:48 - data_loader - WARNING - Expected column 'object_column' not found in DataFrame
+2024-03-10 21:46:48 - data_loader - ERROR - Missing columns in input data, please investigate, missing columns = ['object_column']
+2024-03-10 21:46:48 - data_loader - INFO - Converting integer_column from object to int64
+2024-03-10 21:46:48 - data_loader - INFO - Converting datetime_column from object to dt.date
+2024-03-10 21:46:48 - data_loader - INFO - Convering column names into standard snakecase format from Index(['Col 1', 'Col 2', 'Column 3', 'column_4'], dtype='object') to ['col_1', 'col_2', 'column_3', 'column_4']
+2024-03-10 21:46:48 - data_loader - INFO - Reading csv file into dataframe /Users/faye/PycharmProjects/TrustpilotDataOpsTest//tests/test_reviews.csv
+2024-03-10 21:46:48 - data_loader - INFO - Convering column names into standard snakecase format from Index(['    Reviewer Name', 'Review Title', 'Review Rating', 'Review Content',
+       'Email Address', 'Country', 'Review Date'],
+      dtype='object') to ['reviewer_name', 'review_title', 'review_rating', 'review_content', 'email_address', 'country', 'review_date']
+2024-03-10 21:46:48 - data_loader - INFO - Mapping of expected datatype: {'reviewer_name': 'object', 'review_title': 'object', 'review_rating': 'int64', 'review_content': 'object', 'email_address': 'object', 'country': 'object', 'review_date': 'dt.date'}
+2024-03-10 21:46:48 - data_loader - INFO - Converting review_date from object to dt.date
+2024-03-10 21:46:48 - data_loader - INFO - Converting values in 'country' column to standardised country names
+2024-03-10 21:46:48 - data_loader - INFO - Converting values in 'country' column to standardised ISO3 country names
+2024-03-10 21:46:48 - data_loader - INFO - Stripping whitespace and titling reviewer name
+2024-03-10 21:46:48 - data_loader - INFO - Validating email addresses via regex [^@]+@[^@]+\.[^@]+
+2024-03-10 21:46:48 - data_loader - INFO - Ensuring review ratings are > 0
+2024-03-10 21:46:48 - data_loader - WARNING - Dataframe contains invalid emails: 
+    reviewer_name              email_address
+2   Emily Johnson  invalid_email_example.com
+12   Grace Miller   invalid_email@examplecom
+, these emails will be removed
+2024-03-10 22:11:08 - data_loader - INFO - Converting integer_column from object to int64
+2024-03-10 22:11:08 - data_loader - ERROR - Error converting column: invalid literal for int() with base 10: 'hello'
+2024-03-10 22:11:08 - data_loader - INFO - Converting integer_column from object to int64
+2024-03-10 22:11:08 - data_loader - INFO - Converting datetime_column from object to datetime64[ns]
+2024-03-10 22:11:08 - data_loader - WARNING - Expected column 'object_column' not found in DataFrame
+2024-03-10 22:11:08 - data_loader - ERROR - Missing columns in input data, please investigate, missing columns = ['object_column']
+2024-03-10 22:11:08 - data_loader - INFO - Converting integer_column from object to int64
+2024-03-10 22:11:08 - data_loader - INFO - Converting datetime_column from object to dt.date
+2024-03-10 22:11:08 - data_loader - INFO - Convering column names into standard snakecase format from Index(['Col 1', 'Col 2', 'Column 3', 'column_4'], dtype='object') to ['col_1', 'col_2', 'column_3', 'column_4']
+2024-03-10 22:11:08 - data_loader - INFO - Reading csv file into dataframe /Users/faye/PycharmProjects/TrustpilotDataOpsTest//tests/test_reviews.csv
+2024-03-10 22:11:08 - data_loader - INFO - Convering column names into standard snakecase format from Index(['    Reviewer Name', 'Review Title', 'Review Rating', 'Review Content',
+       'Email Address', 'Country', 'Review Date'],
+      dtype='object') to ['reviewer_name', 'review_title', 'review_rating', 'review_content', 'email_address', 'country', 'review_date']
+2024-03-10 22:11:08 - data_loader - INFO - Mapping of expected datatype: {'reviewer_name': 'object', 'review_title': 'object', 'review_rating': 'int64', 'review_content': 'object', 'email_address': 'object', 'country': 'object', 'review_date': 'dt.date'}
+2024-03-10 22:11:08 - data_loader - INFO - Converting review_date from object to dt.date
+2024-03-10 22:11:08 - data_loader - INFO - Converting values in 'country' column to standardised country names
+2024-03-10 22:11:08 - data_loader - INFO - Converting values in 'country' column to standardised ISO3 country names
+2024-03-10 22:11:08 - data_loader - INFO - Stripping whitespace and titling reviewer name
+2024-03-10 22:11:08 - data_loader - INFO - Validating email addresses via regex [^@]+@[^@]+\.[^@]+
+2024-03-10 22:11:08 - data_loader - INFO - Ensuring review ratings are > 0
+2024-03-10 22:11:08 - data_loader - WARNING - Dataframe contains invalid emails: 
+    reviewer_name              email_address
+2   Emily Johnson  invalid_email_example.com
+12   Grace Miller   invalid_email@examplecom
+, these emails will be removed
+2024-03-11 00:03:33 - data_loader - INFO - Reading csv file into dataframe /Users/faye/PycharmProjects/TrustpilotDataOpsTest//tests/test_reviews.csv
+2024-03-11 00:03:33 - data_loader - INFO - Mapping of expected datatype: {'reviewer_name': 'object', 'review_title': 'object', 'review_rating': 'int64', 'review_content': 'object', 'email_address': 'object', 'country': 'object', 'review_date': 'dt.date'}
+2024-03-11 00:03:33 - data_loader - INFO - Convering column names into standard snakecase format from Index(['    Reviewer Name', 'Review Title', 'Review Rating', 'Review Content',
+       'Email Address', 'Country', 'Review Date'],
+      dtype='object') to ['reviewer_name', 'review_title', 'review_rating', 'review_content', 'email_address', 'country', 'review_date']
+2024-03-11 00:03:33 - data_loader - INFO - Converting review_date from object to dt.date
+2024-03-11 00:03:33 - data_loader - INFO - Converting 'country' column values to standardized short names.
+2024-03-11 00:03:33 - data_loader - INFO - Converting 'country' column values to standardized ISO3 country codes.
+2024-03-11 00:03:33 - data_loader - INFO - Stripping whitespace and titling reviewer name
+2024-03-11 00:03:33 - data_loader - INFO - Validating email addresses via regex pattern.
+2024-03-11 00:03:33 - data_loader - INFO - Validating review ratings.
+2024-03-11 00:03:33 - data_loader - WARNING - Dataframe contains invalid emails, which will be removed: 
+    reviewer_name        review_title  ...  email_valid rating_valid
+2   Emily Johnson        Good Service  ...        False         True
+12   Grace Miller  Poor Communication  ...        False         True
+
+[2 rows x 10 columns]
+2024-03-11 00:14:43 - data_loader - INFO - Reading csv file into dataframe /Users/faye/PycharmProjects/TrustpilotDataOpsTest//tests/test_reviews.csv
+2024-03-11 00:14:43 - data_loader - INFO - Mapping of expected datatype: {'reviewer_name': 'object', 'review_title': 'object', 'review_rating': 'int64', 'review_content': 'object', 'email_address': 'object', 'country': 'object', 'review_date': 'dt.date'}
+2024-03-11 00:14:43 - data_loader - INFO - Convering column names into standard snakecase format from Index(['    Reviewer Name', 'Review Title', 'Review Rating', 'Review Content',
+       'Email Address', 'Country', 'Review Date'],
+      dtype='object') to ['reviewer_name', 'review_title', 'review_rating', 'review_content', 'email_address', 'country', 'review_date']
+2024-03-11 00:14:43 - data_loader - INFO - Converting review_date from object to dt.date
+2024-03-11 00:14:43 - data_loader - INFO - Converting 'country' column values to standardized short names.
+2024-03-11 00:14:43 - data_loader - INFO - Converting 'country' column values to standardized ISO3 country codes.
+2024-03-11 00:14:43 - data_loader - INFO - Stripping whitespace and titling reviewer name
+2024-03-11 00:14:43 - data_loader - INFO - Validating email addresses via regex pattern.
+2024-03-11 00:14:43 - data_loader - INFO - Validating review ratings.
+2024-03-11 00:14:43 - data_loader - WARNING - Dataframe contains invalid emails, which will be removed: 
+    reviewer_name        review_title  ...  email_valid rating_valid
+2   Emily Johnson        Good Service  ...        False         True
+12   Grace Miller  Poor Communication  ...        False         True
+
+[2 rows x 10 columns]
+2024-03-11 01:39:49 - data_loader - INFO - Converting integer_column from object to int64
+2024-03-11 01:39:49 - data_loader - ERROR - Error converting column: invalid literal for int() with base 10: 'hello'
+2024-03-11 01:39:49 - data_loader - INFO - Converting integer_column from object to int64
+2024-03-11 01:39:49 - data_loader - INFO - Converting datetime_column from object to datetime64[ns]
+2024-03-11 01:39:49 - data_loader - WARNING - Expected column 'object_column' not found in DataFrame
+2024-03-11 01:39:49 - data_loader - ERROR - Missing columns in input data, please investigate, missing columns = ['object_column']
+2024-03-11 01:39:49 - data_loader - INFO - Converting integer_column from object to int64
+2024-03-11 01:39:49 - data_loader - INFO - Converting datetime_column from object to dt.date
+2024-03-11 01:39:49 - data_loader - INFO - Convering column names into standard snakecase format from Index(['Col 1', 'Col 2', 'Column 3', 'column_4'], dtype='object') to ['col_1', 'col_2', 'column_3', 'column_4']
+2024-03-11 02:27:27 - data_loader - INFO - Converting integer_column from object to int64
+2024-03-11 02:27:27 - data_loader - ERROR - Error converting column: invalid literal for int() with base 10: 'hello'
+2024-03-11 02:27:27 - data_loader - INFO - Converting integer_column from object to int64
+2024-03-11 02:27:27 - data_loader - INFO - Converting datetime_column from object to datetime64[ns]
+2024-03-11 02:27:27 - data_loader - WARNING - Expected column 'object_column' not found in DataFrame
+2024-03-11 02:27:27 - data_loader - ERROR - Missing columns in input data, please investigate, missing columns = ['object_column']
+2024-03-11 02:27:27 - data_loader - INFO - Converting integer_column from object to int64
+2024-03-11 02:27:27 - data_loader - INFO - Converting datetime_column from object to dt.date
+2024-03-11 02:27:27 - data_loader - INFO - Convering column names into standard snakecase format from Index(['Col 1', 'Col 2', 'Column 3', 'column_4'], dtype='object') to ['col_1', 'col_2', 'column_3', 'column_4']
+2024-03-11 02:34:39 - data_loader - INFO - Converting integer_column from object to int64
+2024-03-11 02:34:39 - data_loader - ERROR - Error converting column: invalid literal for int() with base 10: 'hello'
+2024-03-11 02:34:39 - data_loader - INFO - Converting integer_column from object to int64
+2024-03-11 02:34:39 - data_loader - INFO - Converting datetime_column from object to datetime64[ns]
+2024-03-11 02:34:39 - data_loader - WARNING - Expected column 'object_column' not found in DataFrame
+2024-03-11 02:34:39 - data_loader - ERROR - Missing columns in input data, please investigate, missing columns = ['object_column']
+2024-03-11 02:34:39 - data_loader - INFO - Converting integer_column from object to int64
+2024-03-11 02:34:39 - data_loader - INFO - Converting datetime_column from object to dt.date
+2024-03-11 02:34:39 - data_loader - INFO - Convering column names into standard snakecase format from Index(['Col 1', 'Col 2', 'Column 3', 'column_4'], dtype='object') to ['col_1', 'col_2', 'column_3', 'column_4']
+2024-03-11 02:37:30 - data_loader - INFO - Reading csv file into dataframe /Users/faye/PycharmProjects/TrustpilotDataOpsTest//tests/test_reviews.csv
+2024-03-11 02:37:30 - data_loader - INFO - Mapping of expected datatype: {'reviewer_name': 'object', 'review_title': 'object', 'review_rating': 'int64', 'review_content': 'object', 'email_address': 'object', 'country': 'object', 'review_date': 'dt.date'}
+2024-03-11 02:37:30 - data_loader - INFO - Convering column names into standard snakecase format from Index(['    Reviewer Name', 'Review Title', 'Review Rating', 'Review Content',
+       'Email Address', 'Country', 'Review Date'],
+      dtype='object') to ['reviewer_name', 'review_title', 'review_rating', 'review_content', 'email_address', 'country', 'review_date']
+2024-03-11 02:37:30 - data_loader - INFO - Converting review_date from object to dt.date
+2024-03-11 02:37:30 - data_loader - INFO - Converting 'country' column values to standardized short names.
+2024-03-11 02:37:30 - data_loader - INFO - Converting 'country' column values to standardized ISO3 country codes.
+2024-03-11 02:37:30 - data_loader - INFO - Stripping whitespace and titling reviewer name
+2024-03-11 02:37:30 - data_loader - INFO - Validating email addresses via regex pattern.
+2024-03-11 02:37:30 - data_loader - INFO - Validating review ratings.
+2024-03-11 02:37:30 - data_loader - WARNING - Dataframe contains invalid emails, which will be removed: 
+    reviewer_name        review_title  ...  email_valid rating_valid
+2   Emily Johnson        Good Service  ...        False         True
+12   Grace Miller  Poor Communication  ...        False         True
+
+[2 rows x 10 columns]
+2024-03-11 02:37:52 - data_loader - INFO - Converting integer_column from object to int64
+2024-03-11 02:37:52 - data_loader - ERROR - Error converting column: invalid literal for int() with base 10: 'hello'
+2024-03-11 02:37:52 - data_loader - INFO - Converting integer_column from object to int64
+2024-03-11 02:37:52 - data_loader - INFO - Converting datetime_column from object to datetime64[ns]
+2024-03-11 02:37:52 - data_loader - WARNING - Expected column 'object_column' not found in DataFrame
+2024-03-11 02:37:52 - data_loader - ERROR - Missing columns in input data, please investigate, missing columns = ['object_column']
+2024-03-11 02:37:52 - data_loader - INFO - Converting integer_column from object to int64
+2024-03-11 02:37:52 - data_loader - INFO - Converting datetime_column from object to dt.date
+2024-03-11 02:37:52 - data_loader - INFO - Convering column names into standard snakecase format from Index(['Col 1', 'Col 2', 'Column 3', 'column_4'], dtype='object') to ['col_1', 'col_2', 'column_3', 'column_4']
+2024-03-11 02:37:52 - data_loader - INFO - Reading csv file into dataframe /Users/faye/PycharmProjects/TrustpilotDataOpsTest//tests/test_reviews.csv
+2024-03-11 02:37:52 - data_loader - INFO - Mapping of expected datatype: {'reviewer_name': 'object', 'review_title': 'object', 'review_rating': 'int64', 'review_content': 'object', 'email_address': 'object', 'country': 'object', 'review_date': 'dt.date'}
+2024-03-11 02:37:52 - data_loader - INFO - Convering column names into standard snakecase format from Index(['    Reviewer Name', 'Review Title', 'Review Rating', 'Review Content',
+       'Email Address', 'Country', 'Review Date'],
+      dtype='object') to ['reviewer_name', 'review_title', 'review_rating', 'review_content', 'email_address', 'country', 'review_date']
+2024-03-11 02:37:52 - data_loader - INFO - Converting review_date from object to dt.date
+2024-03-11 02:37:52 - data_loader - INFO - Converting 'country' column values to standardized short names.
+2024-03-11 02:37:52 - data_loader - INFO - Converting 'country' column values to standardized ISO3 country codes.
+2024-03-11 02:37:52 - data_loader - INFO - Stripping whitespace and titling reviewer name
+2024-03-11 02:37:52 - data_loader - INFO - Validating email addresses via regex pattern.
+2024-03-11 02:37:52 - data_loader - INFO - Validating review ratings.
+2024-03-11 02:37:52 - data_loader - WARNING - Dataframe contains invalid emails, which will be removed: 
+    reviewer_name        review_title  ...  email_valid rating_valid
+2   Emily Johnson        Good Service  ...        False         True
+12   Grace Miller  Poor Communication  ...        False         True
+
+[2 rows x 10 columns]
+2024-03-11 02:44:14 - data_loader - INFO - Reading csv file into dataframe data/reviews.csv
+2024-03-11 02:44:14 - data_loader - INFO - Mapping of expected datatype: {'reviewer_name': 'object', 'review_title': 'object', 'review_rating': 'int64', 'review_content': 'object', 'email_address': 'object', 'country': 'object', 'review_date': 'dt.date'}
+2024-03-11 02:44:14 - data_loader - INFO - Convering column names into standard snakecase format from Index(['    Reviewer Name', 'Review Title', 'Review Rating', 'Review Content',
+       'Email Address', 'Country', 'Review Date'],
+      dtype='object') to ['reviewer_name', 'review_title', 'review_rating', 'review_content', 'email_address', 'country', 'review_date']
+2024-03-11 02:44:14 - data_loader - INFO - Converting review_date from object to dt.date
+2024-03-11 02:44:14 - data_loader - INFO - Converting 'country' column values to standardized short names.
+2024-03-11 02:44:14 - data_loader - INFO - Converting 'country' column values to standardized ISO3 country codes.
+2024-03-11 02:44:14 - data_loader - INFO - Stripping whitespace and titling reviewer name
+2024-03-11 02:44:14 - data_loader - INFO - Validating email addresses via regex pattern.
+2024-03-11 02:44:14 - data_loader - INFO - Validating review ratings.
+2024-03-11 02:44:14 - data_loader - WARNING - Dataframe contains invalid emails, which will be removed: 
+    reviewer_name        review_title  review_rating                                     review_content  ... review_date country_code email_valid rating_valid
+2   Emily Johnson        Good Service              3  The service was good, but there were a few hic...  ...  2024-02-23          CAN       False         True
+12   Grace Miller  Poor Communication              2  Communication from the company was lacking thr...  ...  2024-02-23          GBR       False         True
+
+[2 rows x 10 columns]
+2024-03-11 02:44:14 - data_loader - INFO - Expecting to load `16` rows into `reviews`
+2024-03-11 02:44:14 - data_loader - INFO - 16 rows loaded successfully
+2024-03-11 02:44:14 - data_loader - INFO - Closing connection
+2024-03-15 09:11:16 - data_loader - INFO - Converting integer_column from object to int64
+2024-03-15 09:11:16 - data_loader - ERROR - Error converting column: invalid literal for int() with base 10: 'hello'
+2024-03-15 09:11:16 - data_loader - INFO - Converting integer_column from object to int64
+2024-03-15 09:11:16 - data_loader - INFO - Converting datetime_column from object to datetime64[ns]
+2024-03-15 09:11:16 - data_loader - WARNING - Expected column 'object_column' not found in DataFrame
+2024-03-15 09:11:16 - data_loader - ERROR - Missing columns in input data, please investigate, missing columns = ['object_column']
+2024-03-15 09:11:16 - data_loader - INFO - Converting integer_column from object to int64
+2024-03-15 09:11:16 - data_loader - INFO - Converting datetime_column from object to dt.date
+2024-03-15 09:11:16 - data_loader - INFO - Convering column names into standard snakecase format from Index(['Col 1', 'Col 2', 'Column 3', 'column_4'], dtype='object') to ['col_1', 'col_2', 'column_3', 'column_4']
+2024-03-15 09:11:16 - data_loader - INFO - Reading csv file into dataframe /Users/faye/PycharmProjects/TrustpilotDataOpsTest//tests/test_reviews.csv
+2024-03-15 09:11:16 - data_loader - INFO - Mapping of expected datatype: {'reviewer_name': 'object', 'review_title': 'object', 'review_rating': 'int64', 'review_content': 'object', 'email_address': 'object', 'country': 'object', 'review_date': 'dt.date'}
+2024-03-15 09:11:16 - data_loader - INFO - Convering column names into standard snakecase format from Index(['    Reviewer Name', 'Review Title', 'Review Rating', 'Review Content',
+       'Email Address', 'Country', 'Review Date'],
+      dtype='object') to ['reviewer_name', 'review_title', 'review_rating', 'review_content', 'email_address', 'country', 'review_date']
+2024-03-15 09:11:16 - data_loader - INFO - Converting review_date from object to dt.date
+2024-03-15 09:11:16 - data_loader - INFO - Converting 'country' column values to standardized short names.
+2024-03-15 09:11:16 - data_loader - INFO - Converting 'country' column values to standardized ISO3 country codes.
+2024-03-15 09:11:16 - data_loader - INFO - Stripping whitespace and titling reviewer name
+2024-03-15 09:11:16 - data_loader - INFO - Validating email addresses via regex pattern.
+2024-03-15 09:11:16 - data_loader - INFO - Validating review ratings.
+2024-03-15 09:11:16 - data_loader - WARNING - Dataframe contains invalid emails, which will be removed: 
+    reviewer_name        review_title  ...  email_valid rating_valid
+2   Emily Johnson        Good Service  ...        False         True
+12   Grace Miller  Poor Communication  ...        False         True
+
+[2 rows x 10 columns]
+2024-03-15 09:14:03 - data_loader - INFO - Converting integer_column from object to int64
+2024-03-15 09:14:03 - data_loader - ERROR - Error converting column: invalid literal for int() with base 10: 'hello'
+2024-03-15 09:14:03 - data_loader - INFO - Converting integer_column from object to int64
+2024-03-15 09:14:03 - data_loader - INFO - Converting datetime_column from object to datetime64[ns]
+2024-03-15 09:14:03 - data_loader - WARNING - Expected column 'object_column' not found in DataFrame
+2024-03-15 09:14:03 - data_loader - ERROR - Missing columns in input data, please investigate, missing columns = ['object_column']
+2024-03-15 09:14:03 - data_loader - INFO - Converting integer_column from object to int64
+2024-03-15 09:14:03 - data_loader - INFO - Converting datetime_column from object to dt.date
+2024-03-15 09:14:03 - data_loader - INFO - Convering column names into standard snakecase format from Index(['Col 1', 'Col 2', 'Column 3', 'column_4'], dtype='object') to ['col_1', 'col_2', 'column_3', 'column_4']
+2024-03-15 09:14:03 - data_loader - INFO - Reading csv file into dataframe /Users/faye/PycharmProjects/TrustpilotDataOpsTest//tests/test_reviews.csv
+2024-03-15 09:14:03 - data_loader - INFO - Mapping of expected datatype: {'reviewer_name': 'object', 'review_title': 'object', 'review_rating': 'int64', 'review_content': 'object', 'email_address': 'object', 'country': 'object', 'review_date': 'dt.date'}
+2024-03-15 09:14:03 - data_loader - INFO - Convering column names into standard snakecase format from Index(['    Reviewer Name', 'Review Title', 'Review Rating', 'Review Content',
+       'Email Address', 'Country', 'Review Date'],
+      dtype='object') to ['reviewer_name', 'review_title', 'review_rating', 'review_content', 'email_address', 'country', 'review_date']
+2024-03-15 09:14:03 - data_loader - INFO - Converting review_date from object to dt.date
+2024-03-15 09:14:03 - data_loader - INFO - Converting 'country' column values to standardized short names.
+2024-03-15 09:14:03 - data_loader - INFO - Converting 'country' column values to standardized ISO3 country codes.
+2024-03-15 09:14:03 - data_loader - INFO - Stripping whitespace and titling reviewer name
+2024-03-15 09:14:03 - data_loader - INFO - Validating email addresses via regex pattern.
+2024-03-15 09:14:03 - data_loader - INFO - Validating review ratings.
+2024-03-15 09:14:03 - data_loader - WARNING - Dataframe contains invalid emails, which will be removed: 
+    reviewer_name        review_title  ...  email_valid rating_valid
+2   Emily Johnson        Good Service  ...        False         True
+12   Grace Miller  Poor Communication  ...        False         True
+
+[2 rows x 10 columns]
+2024-03-15 09:14:27 - data_loader - INFO - Converting integer_column from object to int64
+2024-03-15 09:14:27 - data_loader - ERROR - Error converting column: invalid literal for int() with base 10: 'hello'
+2024-03-15 09:14:27 - data_loader - INFO - Converting integer_column from object to int64
+2024-03-15 09:14:27 - data_loader - INFO - Converting datetime_column from object to datetime64[ns]
+2024-03-15 09:14:27 - data_loader - WARNING - Expected column 'object_column' not found in DataFrame
+2024-03-15 09:14:27 - data_loader - ERROR - Missing columns in input data, please investigate, missing columns = ['object_column']
+2024-03-15 09:14:27 - data_loader - INFO - Converting integer_column from object to int64
+2024-03-15 09:14:27 - data_loader - INFO - Converting datetime_column from object to dt.date
+2024-03-15 09:14:27 - data_loader - INFO - Convering column names into standard snakecase format from Index(['Col 1', 'Col 2', 'Column 3', 'column_4'], dtype='object') to ['col_1', 'col_2', 'column_3', 'column_4']
+2024-03-15 09:14:27 - data_loader - INFO - Reading csv file into dataframe /Users/faye/PycharmProjects/TrustpilotDataOpsTest//tests/test_reviews.csv
+2024-03-15 09:14:27 - data_loader - INFO - Mapping of expected datatype: {'reviewer_name': 'object', 'review_title': 'object', 'review_rating': 'int64', 'review_content': 'object', 'email_address': 'object', 'country': 'object', 'review_date': 'dt.date'}
+2024-03-15 09:14:27 - data_loader - INFO - Convering column names into standard snakecase format from Index(['    Reviewer Name', 'Review Title', 'Review Rating', 'Review Content',
+       'Email Address', 'Country', 'Review Date'],
+      dtype='object') to ['reviewer_name', 'review_title', 'review_rating', 'review_content', 'email_address', 'country', 'review_date']
+2024-03-15 09:14:27 - data_loader - INFO - Converting review_date from object to dt.date
+2024-03-15 09:14:27 - data_loader - INFO - Converting 'country' column values to standardized short names.
+2024-03-15 09:14:27 - data_loader - INFO - Converting 'country' column values to standardized ISO3 country codes.
+2024-03-15 09:14:27 - data_loader - INFO - Stripping whitespace and titling reviewer name
+2024-03-15 09:14:27 - data_loader - INFO - Validating email addresses via regex pattern.
+2024-03-15 09:14:27 - data_loader - INFO - Validating review ratings.
+2024-03-15 09:14:27 - data_loader - WARNING - Dataframe contains invalid emails, which will be removed: 
+    reviewer_name        review_title  ...  email_valid rating_valid
+2   Emily Johnson        Good Service  ...        False         True
+12   Grace Miller  Poor Communication  ...        False         True
+
+[2 rows x 10 columns]
+2024-03-15 09:15:23 - data_loader - INFO - Converting integer_column from object to int64
+2024-03-15 09:15:23 - data_loader - ERROR - Error converting column: invalid literal for int() with base 10: 'hello'
+2024-03-15 09:15:23 - data_loader - INFO - Converting integer_column from object to int64
+2024-03-15 09:15:23 - data_loader - INFO - Converting datetime_column from object to datetime64[ns]
+2024-03-15 09:15:23 - data_loader - WARNING - Expected column 'object_column' not found in DataFrame
+2024-03-15 09:15:23 - data_loader - ERROR - Missing columns in input data, please investigate, missing columns = ['object_column']
+2024-03-15 09:15:23 - data_loader - INFO - Converting integer_column from object to int64
+2024-03-15 09:15:23 - data_loader - INFO - Converting datetime_column from object to dt.date
+2024-03-15 09:15:23 - data_loader - INFO - Convering column names into standard snakecase format from Index(['Col 1', 'Col 2', 'Column 3', 'column_4'], dtype='object') to ['col_1', 'col_2', 'column_3', 'column_4']
+2024-03-15 09:15:23 - data_loader - INFO - Reading csv file into dataframe /Users/faye/PycharmProjects/TrustpilotDataOpsTest//tests/test_reviews.csv
+2024-03-15 09:15:23 - data_loader - INFO - Mapping of expected datatype: {'reviewer_name': 'object', 'review_title': 'object', 'review_rating': 'int64', 'review_content': 'object', 'email_address': 'object', 'country': 'object', 'review_date': 'dt.date'}
+2024-03-15 09:15:23 - data_loader - INFO - Convering column names into standard snakecase format from Index(['    Reviewer Name', 'Review Title', 'Review Rating', 'Review Content',
+       'Email Address', 'Country', 'Review Date'],
+      dtype='object') to ['reviewer_name', 'review_title', 'review_rating', 'review_content', 'email_address', 'country', 'review_date']
+2024-03-15 09:15:23 - data_loader - INFO - Converting review_date from object to dt.date
+2024-03-15 09:15:23 - data_loader - INFO - Converting 'country' column values to standardized short names.
+2024-03-15 09:15:23 - data_loader - INFO - Converting 'country' column values to standardized ISO3 country codes.
+2024-03-15 09:15:23 - data_loader - INFO - Stripping whitespace and titling reviewer name
+2024-03-15 09:15:23 - data_loader - INFO - Validating email addresses via regex pattern.
+2024-03-15 09:15:23 - data_loader - INFO - Validating review ratings.
+2024-03-15 09:15:23 - data_loader - WARNING - Dataframe contains invalid emails, which will be removed: 
+    reviewer_name        review_title  ...  email_valid rating_valid
+2   Emily Johnson        Good Service  ...        False         True
+12   Grace Miller  Poor Communication  ...        False         True
+
+[2 rows x 10 columns]
+2024-03-15 09:17:57 - data_loader - INFO - Converting integer_column from object to int64
+2024-03-15 09:17:57 - data_loader - ERROR - Error converting column: invalid literal for int() with base 10: 'hello'
+2024-03-15 09:17:57 - data_loader - INFO - Converting integer_column from object to int64
+2024-03-15 09:17:57 - data_loader - INFO - Converting datetime_column from object to datetime64[ns]
+2024-03-15 09:17:57 - data_loader - WARNING - Expected column 'object_column' not found in DataFrame
+2024-03-15 09:17:57 - data_loader - ERROR - Missing columns in input data, please investigate, missing columns = ['object_column']
+2024-03-15 09:17:57 - data_loader - INFO - Converting integer_column from object to int64
+2024-03-15 09:17:57 - data_loader - INFO - Converting datetime_column from object to dt.date
+2024-03-15 09:17:57 - data_loader - INFO - Convering column names into standard snakecase format from Index(['Col 1', 'Col 2', 'Column 3', 'column_4'], dtype='object') to ['col_1', 'col_2', 'column_3', 'column_4']
+2024-03-15 09:17:57 - data_loader - INFO - Reading csv file into dataframe /Users/faye/PycharmProjects/TrustpilotDataOpsTest//tests/test_reviews.csv
+2024-03-15 09:17:57 - data_loader - INFO - Mapping of expected datatype: {'reviewer_name': 'object', 'review_title': 'object', 'review_rating': 'int64', 'review_content': 'object', 'email_address': 'object', 'country': 'object', 'review_date': 'dt.date'}
+2024-03-15 09:17:57 - data_loader - INFO - Convering column names into standard snakecase format from Index(['    Reviewer Name', 'Review Title', 'Review Rating', 'Review Content',
+       'Email Address', 'Country', 'Review Date'],
+      dtype='object') to ['reviewer_name', 'review_title', 'review_rating', 'review_content', 'email_address', 'country', 'review_date']
+2024-03-15 09:17:57 - data_loader - INFO - Converting review_date from object to dt.date
+2024-03-15 09:17:57 - data_loader - INFO - Converting 'country' column values to standardized short names.
+2024-03-15 09:17:57 - data_loader - INFO - Converting 'country' column values to standardized ISO3 country codes.
+2024-03-15 09:17:57 - data_loader - INFO - Stripping whitespace and titling reviewer name
+2024-03-15 09:17:57 - data_loader - INFO - Validating email addresses via regex pattern.
+2024-03-15 09:17:57 - data_loader - INFO - Validating review ratings.
+2024-03-15 09:17:57 - data_loader - WARNING - Dataframe contains invalid emails, which will be removed: 
+    reviewer_name        review_title  ...  email_valid rating_valid
+2   Emily Johnson        Good Service  ...        False         True
+12   Grace Miller  Poor Communication  ...        False         True
+
+[2 rows x 10 columns]
+2024-03-15 09:18:21 - data_loader - INFO - Converting integer_column from object to int64
+2024-03-15 09:18:21 - data_loader - ERROR - Error converting column: invalid literal for int() with base 10: 'hello'
+2024-03-15 09:18:21 - data_loader - INFO - Converting integer_column from object to int64
+2024-03-15 09:18:21 - data_loader - INFO - Converting datetime_column from object to datetime64[ns]
+2024-03-15 09:18:21 - data_loader - WARNING - Expected column 'object_column' not found in DataFrame
+2024-03-15 09:18:21 - data_loader - ERROR - Missing columns in input data, please investigate, missing columns = ['object_column']
+2024-03-15 09:18:21 - data_loader - INFO - Converting integer_column from object to int64
+2024-03-15 09:18:21 - data_loader - INFO - Converting datetime_column from object to dt.date
+2024-03-15 09:18:21 - data_loader - INFO - Convering column names into standard snakecase format from Index(['Col 1', 'Col 2', 'Column 3', 'column_4'], dtype='object') to ['col_1', 'col_2', 'column_3', 'column_4']
+2024-03-15 09:18:21 - data_loader - INFO - Reading csv file into dataframe /Users/faye/PycharmProjects/TrustpilotDataOpsTest//tests/test_reviews.csv
+2024-03-15 09:18:21 - data_loader - INFO - Mapping of expected datatype: {'reviewer_name': 'object', 'review_title': 'object', 'review_rating': 'int64', 'review_content': 'object', 'email_address': 'object', 'country': 'object', 'review_date': 'dt.date'}
+2024-03-15 09:18:21 - data_loader - INFO - Convering column names into standard snakecase format from Index(['    Reviewer Name', 'Review Title', 'Review Rating', 'Review Content',
+       'Email Address', 'Country', 'Review Date'],
+      dtype='object') to ['reviewer_name', 'review_title', 'review_rating', 'review_content', 'email_address', 'country', 'review_date']
+2024-03-15 09:18:21 - data_loader - INFO - Converting review_date from object to dt.date
+2024-03-15 09:18:21 - data_loader - INFO - Converting 'country' column values to standardized short names.
+2024-03-15 09:18:21 - data_loader - INFO - Converting 'country' column values to standardized ISO3 country codes.
+2024-03-15 09:18:21 - data_loader - INFO - Stripping whitespace and titling reviewer name
+2024-03-15 09:18:21 - data_loader - INFO - Validating email addresses via regex pattern.
+2024-03-15 09:18:21 - data_loader - INFO - Validating review ratings.
+2024-03-15 09:18:21 - data_loader - WARNING - Dataframe contains invalid emails, which will be removed: 
+    reviewer_name        review_title  ...  email_valid rating_valid
+2   Emily Johnson        Good Service  ...        False         True
+12   Grace Miller  Poor Communication  ...        False         True
+
+[2 rows x 10 columns]
+2024-03-15 09:18:34 - data_loader - INFO - Converting integer_column from object to int64
+2024-03-15 09:18:34 - data_loader - ERROR - Error converting column: invalid literal for int() with base 10: 'hello'
+2024-03-15 09:18:34 - data_loader - INFO - Converting integer_column from object to int64
+2024-03-15 09:18:34 - data_loader - INFO - Converting datetime_column from object to datetime64[ns]
+2024-03-15 09:18:34 - data_loader - WARNING - Expected column 'object_column' not found in DataFrame
+2024-03-15 09:18:34 - data_loader - ERROR - Missing columns in input data, please investigate, missing columns = ['object_column']
+2024-03-15 09:18:34 - data_loader - INFO - Converting integer_column from object to int64
+2024-03-15 09:18:34 - data_loader - INFO - Converting datetime_column from object to dt.date
+2024-03-15 09:18:34 - data_loader - INFO - Convering column names into standard snakecase format from Index(['Col 1', 'Col 2', 'Column 3', 'column_4'], dtype='object') to ['col_1', 'col_2', 'column_3', 'column_4']
+2024-03-15 09:18:34 - data_loader - INFO - Reading csv file into dataframe /Users/faye/PycharmProjects/TrustpilotDataOpsTest//tests/test_reviews.csv
+2024-03-15 09:18:34 - data_loader - INFO - Mapping of expected datatype: {'reviewer_name': 'object', 'review_title': 'object', 'review_rating': 'int64', 'review_content': 'object', 'email_address': 'object', 'country': 'object', 'review_date': 'dt.date'}
+2024-03-15 09:18:34 - data_loader - INFO - Convering column names into standard snakecase format from Index(['    Reviewer Name', 'Review Title', 'Review Rating', 'Review Content',
+       'Email Address', 'Country', 'Review Date'],
+      dtype='object') to ['reviewer_name', 'review_title', 'review_rating', 'review_content', 'email_address', 'country', 'review_date']
+2024-03-15 09:18:34 - data_loader - INFO - Converting review_date from object to dt.date
+2024-03-15 09:18:34 - data_loader - INFO - Converting 'country' column values to standardized short names.
+2024-03-15 09:18:34 - data_loader - INFO - Converting 'country' column values to standardized ISO3 country codes.
+2024-03-15 09:18:34 - data_loader - INFO - Stripping whitespace and titling reviewer name
+2024-03-15 09:18:34 - data_loader - INFO - Validating email addresses via regex pattern.
+2024-03-15 09:18:34 - data_loader - INFO - Validating review ratings.
+2024-03-15 09:18:34 - data_loader - WARNING - Dataframe contains invalid emails, which will be removed: 
+    reviewer_name        review_title  ...  email_valid rating_valid
+2   Emily Johnson        Good Service  ...        False         True
+12   Grace Miller  Poor Communication  ...        False         True
+
+[2 rows x 10 columns]
+2024-03-15 10:10:19 - data_loader - INFO - Convering column names into standard snakecase format from Index(['    Reviewer Name', 'Review Title', 'Review Rating', 'Review Content',
+       'Email Address', 'Country', 'Review Date'],
+      dtype='object') to ['reviewer_name', 'review_title', 'review_rating', 'review_content', 'email_address', 'country', 'review_date']
+2024-03-15 10:10:19 - data_loader - INFO - Mapping of expected datatype: {'reviewer_name': 'object', 'review_title': 'object', 'review_rating': 'int64', 'review_content': 'object', 'email_address': 'object', 'country': 'object', 'review_date': 'dt.date'}
+2024-03-15 10:10:19 - data_loader - INFO - Converting review_date from object to dt.date
+2024-03-15 10:10:19 - data_loader - INFO - Converting values in 'country' column to standardised country names
+2024-03-15 10:10:19 - data_loader - INFO - Converting values in 'country' column to standardised ISO3 country names
+2024-03-15 10:10:19 - data_loader - INFO - Stripping whitespace and titling reviewer name
+2024-03-15 10:10:19 - data_loader - INFO - Validating email addresses via regex [^@]+@[^@]+\.[^@]+
+2024-03-15 10:10:19 - data_loader - INFO - Ensuring review ratings are > 0
+2024-03-15 10:10:19 - data_loader - WARNING - Dataframe contains invalid emails: 
+    reviewer_name              email_address
+2   Emily Johnson  invalid_email_example.com
+12   Grace Miller   invalid_email@examplecom
+, these emails will be removed
