@@ -1,8 +1,6 @@
-# Trustpilot Data Operations Test
-
 ## Project Overview
 
-This project is designed to ingest, process, and manage Trustpilot review data, offering a RESTful API for effective data handling. It facilitates operations like data ingestion from CSV files, data standardization, and CRUD operations via an intuitive API.
+This project is designed to ingest, process, and manage review data, offering a RESTful API for effective data handling. It facilitates operations like data ingestion from CSV files, data standardization, and CRUD operations via an intuitive API.
 
 ## **Key Features**
 
