@@ -144,9 +144,9 @@ def test_update_specific_reviews(test_db, test_client):
 
 
 def test_delete_specific_reviews(test_db, test_client):
-
+    test_client.delete("/reviews/truncate")
     # Insert all rows into table
-    inserted = test_client.post("/reviews/insert", json=sample_reviews)
+    test_client.post("/reviews/insert", json=sample_reviews)
     d = {"table": "reviews",
          "conditions":
              [
@@ -155,7 +155,7 @@ def test_delete_specific_reviews(test_db, test_client):
          }
     # Confirm there is 1 record in the table with "Danny" in reviewer name
     response = test_client.post("reviews/select", json=d)
-    assert len(response.json()) == 1
+    assert len(response.json()) == 1, f"length of json response = {len(response.json())}"
 
     # Delete rows that contain "Danny" in reviewer name
     response = test_client.request("DELETE", "/reviews/delete", json=sample_condition)
