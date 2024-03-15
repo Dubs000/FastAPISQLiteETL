@@ -11,6 +11,7 @@ fastapi = "*"
 country-converter = "*"
 email-validator = "*"
 requests = "*"
+httpx = "*"
 
 [dev-packages]
 
