@@ -21,8 +21,8 @@ This project is designed to ingest, process, and manage review data, offering a 
 
 ```bash
 # Clone the repository
-git clone https://github.com/Dubs000/TrustpilotDataOpsTest.git
-cd TrustpilotDataOpsTest
+git clone https://github.com/Dubs000/FastAPISQLiteETL.git
+cd FastAPISQLiteETL
 
 # Install dependencies using pipenv
 pip install pipenv
